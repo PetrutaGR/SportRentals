@@ -48,6 +48,7 @@
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Data.Linq" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
@@ -187,8 +188,22 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\AddressModel.cs" />
+    <Compile Include="Models\CategoryModel.cs" />
+    <Compile Include="Models\CustomerModel.cs" />
+    <Compile Include="Models\DBObjects\SportRentalsModels.designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>SportRentalsModels.dbml</DependentUpon>
+    </Compile>
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
+    <Compile Include="Models\OrderModel.cs" />
+    <Compile Include="Models\OrderProductModel.cs" />
+    <Compile Include="Models\PaymentMethodModel.cs" />
+    <Compile Include="Models\ProductModel.cs" />
+    <Compile Include="Models\ShopModel.cs" />
+    <Compile Include="Models\ShopPaymentMethodModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
@@ -207,6 +222,14 @@
     <Content Include="Content\Site.css" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="Models\DBObjects\SportRentalsModels.dbml">
+      <Generator>MSLinqToSQLGenerator</Generator>
+      <LastGenOutput>SportRentalsModels.designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </Content>
+    <None Include="Models\DBObjects\SportRentalsModels.dbml.layout">
+      <DependentUpon>SportRentalsModels.dbml</DependentUpon>
+    </None>
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
     <Content Include="Scripts\jquery-3.3.1.min.js" />
@@ -253,7 +276,9 @@
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Service Include="{3259AA49-8AA1-44D3-9025-A0B520596A8C}" />
+  </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
