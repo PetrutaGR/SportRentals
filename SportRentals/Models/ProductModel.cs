@@ -12,7 +12,7 @@ namespace SportRentals.Models
         public int CategoryID { get; set; }
         public string Name { get; set; }
         public string Description { get; set; }
-        public double DailyPrice { get; set; }
+        public decimal DailyPrice { get; set; }
         public int Stock { get; set; }
         
     }

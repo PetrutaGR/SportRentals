@@ -23,7 +23,7 @@ namespace SportRentals.Models.DBObjects
 	
 	
 	[global::System.Data.Linq.Mapping.DatabaseAttribute(Name="SportEquipmentRentals")]
-	public partial class SportRentalsModelsDataContext : System.Data.Linq.DataContext
+	public partial class SportRentalsDataContext : System.Data.Linq.DataContext
 	{
 		
 		private static System.Data.Linq.Mapping.MappingSource mappingSource = new AttributeMappingSource();
@@ -36,15 +36,15 @@ namespace SportRentals.Models.DBObjects
     partial void InsertCategory(Category instance);
     partial void UpdateCategory(Category instance);
     partial void DeleteCategory(Category instance);
+    partial void InsertPaymentMethod(PaymentMethod instance);
+    partial void UpdatePaymentMethod(PaymentMethod instance);
+    partial void DeletePaymentMethod(PaymentMethod instance);
     partial void InsertCustomer(Customer instance);
     partial void UpdateCustomer(Customer instance);
     partial void DeleteCustomer(Customer instance);
     partial void InsertOrder(Order instance);
     partial void UpdateOrder(Order instance);
     partial void DeleteOrder(Order instance);
-    partial void InsertPaymentMethod(PaymentMethod instance);
-    partial void UpdatePaymentMethod(PaymentMethod instance);
-    partial void DeletePaymentMethod(PaymentMethod instance);
     partial void InsertProduct(Product instance);
     partial void UpdateProduct(Product instance);
     partial void DeleteProduct(Product instance);
@@ -53,31 +53,32 @@ namespace SportRentals.Models.DBObjects
     partial void DeleteShop(Shop instance);
     #endregion
 		
-		public SportRentalsModelsDataContext() : 
-				base(global::System.Configuration.ConfigurationManager.ConnectionStrings["SportEquipmentRentalsConnectionString"].ConnectionString, mappingSource)
-		{
+		public SportRentalsDataContext(string connection) :
+                base(global::System.Configuration.ConfigurationManager.ConnectionStrings["SportEquipmentRentalsConnectionString"].ConnectionString, mappingSource)
+        {
 			OnCreated();
 		}
-		
-		public SportRentalsModelsDataContext(string connection) : 
+
+        public SportRentalsDataContext() :
+                base(global::System.Configuration.ConfigurationManager.ConnectionStrings["SportEquipmentRentalsConnectionString"].ConnectionString, mappingSource)
+        {
+            OnCreated();
+        }
+
+
+        public SportRentalsDataContext(System.Data.IDbConnection connection) : 
 				base(connection, mappingSource)
 		{
 			OnCreated();
 		}
 		
-		public SportRentalsModelsDataContext(System.Data.IDbConnection connection) : 
+		public SportRentalsDataContext(string connection, System.Data.Linq.Mapping.MappingSource mappingSource) : 
 				base(connection, mappingSource)
 		{
 			OnCreated();
 		}
 		
-		public SportRentalsModelsDataContext(string connection, System.Data.Linq.Mapping.MappingSource mappingSource) : 
-				base(connection, mappingSource)
-		{
-			OnCreated();
-		}
-		
-		public SportRentalsModelsDataContext(System.Data.IDbConnection connection, System.Data.Linq.Mapping.MappingSource mappingSource) : 
+		public SportRentalsDataContext(System.Data.IDbConnection connection, System.Data.Linq.Mapping.MappingSource mappingSource) : 
 				base(connection, mappingSource)
 		{
 			OnCreated();
@@ -99,11 +100,11 @@ namespace SportRentals.Models.DBObjects
 			}
 		}
 		
-		public System.Data.Linq.Table<Customer> Customers
+		public System.Data.Linq.Table<PaymentMethod> PaymentMethods
 		{
 			get
 			{
-				return this.GetTable<Customer>();
+				return this.GetTable<PaymentMethod>();
 			}
 		}
 		
@@ -115,19 +116,19 @@ namespace SportRentals.Models.DBObjects
 			}
 		}
 		
+		public System.Data.Linq.Table<Customer> Customers
+		{
+			get
+			{
+				return this.GetTable<Customer>();
+			}
+		}
+		
 		public System.Data.Linq.Table<Order> Orders
 		{
 			get
 			{
 				return this.GetTable<Order>();
-			}
-		}
-		
-		public System.Data.Linq.Table<PaymentMethod> PaymentMethods
-		{
-			get
-			{
-				return this.GetTable<PaymentMethod>();
 			}
 		}
 		
@@ -556,6 +557,197 @@ namespace SportRentals.Models.DBObjects
 		}
 	}
 	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.PaymentMethods")]
+	public partial class PaymentMethod : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _PaymentMethodID;
+		
+		private string _Name;
+		
+		private string _Description;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnPaymentMethodIDChanging(int value);
+    partial void OnPaymentMethodIDChanged();
+    partial void OnNameChanging(string value);
+    partial void OnNameChanged();
+    partial void OnDescriptionChanging(string value);
+    partial void OnDescriptionChanged();
+    #endregion
+		
+		public PaymentMethod()
+		{
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_PaymentMethodID", DbType="Int NOT NULL", IsPrimaryKey=true)]
+		public int PaymentMethodID
+		{
+			get
+			{
+				return this._PaymentMethodID;
+			}
+			set
+			{
+				if ((this._PaymentMethodID != value))
+				{
+					this.OnPaymentMethodIDChanging(value);
+					this.SendPropertyChanging();
+					this._PaymentMethodID = value;
+					this.SendPropertyChanged("PaymentMethodID");
+					this.OnPaymentMethodIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Name", DbType="VarChar(50)")]
+		public string Name
+		{
+			get
+			{
+				return this._Name;
+			}
+			set
+			{
+				if ((this._Name != value))
+				{
+					this.OnNameChanging(value);
+					this.SendPropertyChanging();
+					this._Name = value;
+					this.SendPropertyChanged("Name");
+					this.OnNameChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Description", DbType="VarChar(100)")]
+		public string Description
+		{
+			get
+			{
+				return this._Description;
+			}
+			set
+			{
+				if ((this._Description != value))
+				{
+					this.OnDescriptionChanging(value);
+					this.SendPropertyChanging();
+					this._Description = value;
+					this.SendPropertyChanged("Description");
+					this.OnDescriptionChanged();
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.OrderProducts")]
+	public partial class OrderProduct
+	{
+		
+		private int _OrderID;
+		
+		private int _ProductID;
+		
+		private System.Nullable<int> _ProductQuantity;
+		
+		private string _OrderStatus;
+		
+		public OrderProduct()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_OrderID", DbType="Int NOT NULL")]
+		public int OrderID
+		{
+			get
+			{
+				return this._OrderID;
+			}
+			set
+			{
+				if ((this._OrderID != value))
+				{
+					this._OrderID = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ProductID", DbType="Int NOT NULL")]
+		public int ProductID
+		{
+			get
+			{
+				return this._ProductID;
+			}
+			set
+			{
+				if ((this._ProductID != value))
+				{
+					this._ProductID = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ProductQuantity", DbType="Int")]
+		public System.Nullable<int> ProductQuantity
+		{
+			get
+			{
+				return this._ProductQuantity;
+			}
+			set
+			{
+				if ((this._ProductQuantity != value))
+				{
+					this._ProductQuantity = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_OrderStatus", DbType="VarChar(50)")]
+		public string OrderStatus
+		{
+			get
+			{
+				return this._OrderStatus;
+			}
+			set
+			{
+				if ((this._OrderStatus != value))
+				{
+					this._OrderStatus = value;
+				}
+			}
+		}
+	}
+	
 	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Customers")]
 	public partial class Customer : INotifyPropertyChanging, INotifyPropertyChanged
 	{
@@ -804,87 +996,6 @@ namespace SportRentals.Models.DBObjects
 		{
 			this.SendPropertyChanging();
 			entity.Customer = null;
-		}
-	}
-	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.OrderProducts")]
-	public partial class OrderProduct
-	{
-		
-		private int _OrderID;
-		
-		private int _ProductID;
-		
-		private System.Nullable<int> _ProductQuantity;
-		
-		private string _OrderStatus;
-		
-		public OrderProduct()
-		{
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_OrderID", DbType="Int NOT NULL")]
-		public int OrderID
-		{
-			get
-			{
-				return this._OrderID;
-			}
-			set
-			{
-				if ((this._OrderID != value))
-				{
-					this._OrderID = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ProductID", DbType="Int NOT NULL")]
-		public int ProductID
-		{
-			get
-			{
-				return this._ProductID;
-			}
-			set
-			{
-				if ((this._ProductID != value))
-				{
-					this._ProductID = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ProductQuantity", DbType="Int")]
-		public System.Nullable<int> ProductQuantity
-		{
-			get
-			{
-				return this._ProductQuantity;
-			}
-			set
-			{
-				if ((this._ProductQuantity != value))
-				{
-					this._ProductQuantity = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_OrderStatus", DbType="VarChar(50)")]
-		public string OrderStatus
-		{
-			get
-			{
-				return this._OrderStatus;
-			}
-			set
-			{
-				if ((this._OrderStatus != value))
-				{
-					this._OrderStatus = value;
-				}
-			}
 		}
 	}
 	
@@ -1152,116 +1263,6 @@ namespace SportRentals.Models.DBObjects
 		}
 	}
 	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.PaymentMethods")]
-	public partial class PaymentMethod : INotifyPropertyChanging, INotifyPropertyChanged
-	{
-		
-		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
-		
-		private int _PaymentMethodID;
-		
-		private string _Name;
-		
-		private string _Description;
-		
-    #region Extensibility Method Definitions
-    partial void OnLoaded();
-    partial void OnValidate(System.Data.Linq.ChangeAction action);
-    partial void OnCreated();
-    partial void OnPaymentMethodIDChanging(int value);
-    partial void OnPaymentMethodIDChanged();
-    partial void OnNameChanging(string value);
-    partial void OnNameChanged();
-    partial void OnDescriptionChanging(string value);
-    partial void OnDescriptionChanged();
-    #endregion
-		
-		public PaymentMethod()
-		{
-			OnCreated();
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_PaymentMethodID", DbType="Int NOT NULL", IsPrimaryKey=true)]
-		public int PaymentMethodID
-		{
-			get
-			{
-				return this._PaymentMethodID;
-			}
-			set
-			{
-				if ((this._PaymentMethodID != value))
-				{
-					this.OnPaymentMethodIDChanging(value);
-					this.SendPropertyChanging();
-					this._PaymentMethodID = value;
-					this.SendPropertyChanged("PaymentMethodID");
-					this.OnPaymentMethodIDChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Name", DbType="VarChar(50)")]
-		public string Name
-		{
-			get
-			{
-				return this._Name;
-			}
-			set
-			{
-				if ((this._Name != value))
-				{
-					this.OnNameChanging(value);
-					this.SendPropertyChanging();
-					this._Name = value;
-					this.SendPropertyChanged("Name");
-					this.OnNameChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Description", DbType="VarChar(100)")]
-		public string Description
-		{
-			get
-			{
-				return this._Description;
-			}
-			set
-			{
-				if ((this._Description != value))
-				{
-					this.OnDescriptionChanging(value);
-					this.SendPropertyChanging();
-					this._Description = value;
-					this.SendPropertyChanged("Description");
-					this.OnDescriptionChanged();
-				}
-			}
-		}
-		
-		public event PropertyChangingEventHandler PropertyChanging;
-		
-		public event PropertyChangedEventHandler PropertyChanged;
-		
-		protected virtual void SendPropertyChanging()
-		{
-			if ((this.PropertyChanging != null))
-			{
-				this.PropertyChanging(this, emptyChangingEventArgs);
-			}
-		}
-		
-		protected virtual void SendPropertyChanged(String propertyName)
-		{
-			if ((this.PropertyChanged != null))
-			{
-				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-			}
-		}
-	}
-	
 	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Products")]
 	public partial class Product : INotifyPropertyChanging, INotifyPropertyChanged
 	{
@@ -1306,7 +1307,7 @@ namespace SportRentals.Models.DBObjects
 			OnCreated();
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ProductID", DbType="Int NOT NULL", IsPrimaryKey=true)]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ProductID", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
 		public int ProductID
 		{
 			get
