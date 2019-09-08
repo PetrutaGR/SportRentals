@@ -20,7 +20,7 @@ namespace SportRentals.Repository
             this.dbContext = dbContext;
         }
 
-        private Models.DBObjects.Product MapModelToDbObject(ProductModel productModel)
+        public Models.DBObjects.Product MapModelToDbObject(ProductModel productModel)
         {
             Models.DBObjects.Product dbProduct = new Models.DBObjects.Product();
             if(productModel != null)
@@ -38,7 +38,7 @@ namespace SportRentals.Repository
             return null;
         }
 
-        private ProductModel MapDbOjectToModel(Models.DBObjects.Product dbProduct)
+        public ProductModel MapDbOjectToModel(Models.DBObjects.Product dbProduct)
         {
             ProductModel productModel = new ProductModel();
             if(dbProduct != null)

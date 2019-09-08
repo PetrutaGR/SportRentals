@@ -1,0 +1,93 @@
+﻿@model SportRentals.ViewModels.OrderProductsViewModel
+
+@{
+    ViewBag.Title = "OrderProducts";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>OrderProducts</h2>
+
+<div>
+    <h4>OrderProductsViewModel</h4>
+    <hr />
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.OrderID)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.StartDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.EndDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Total)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CreatedDateTime)
+            </th>
+        </tr>
+
+        <tr>
+            <td>
+                @Html.DisplayFor(model => model.OrderID)
+            </td>
+            <td>
+                @Html.DisplayFor(model => model.StartDate)
+            </td>
+            <td>
+                @Html.DisplayFor(model => model.EndDate)
+            </td>
+            <td>
+                @Html.DisplayFor(model => model.Total)
+            </td>
+            <td>
+                @Html.DisplayFor(model => model.CreatedDateTime)
+            </td>
+
+            <td>
+                <table class="table">
+                    <tr>
+                        <th>
+                            Product Name
+                        </th>
+                        <th>
+                            Description
+                        </th>
+                        <th>
+                            Stock
+                        </th>
+                        <th>
+                            Category
+                        </th>
+                    </tr>
+                    @foreach (var item in Model.Products)
+                    {
+                        <tr>
+                        </tr>
+
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(x => item.Name)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(x => item.Description)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(x => item.Stock)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(x => item.Category.Name)
+                            </td>
+                        </tr>
+                    }
+                </table>
+            </td>
+            </table>
+</div>
+
+            <p>
+                @Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ }) |
+                @Html.ActionLink("Back to List", "Index")
+            </p>

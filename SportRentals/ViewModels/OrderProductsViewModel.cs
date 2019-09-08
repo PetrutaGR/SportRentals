@@ -1,18 +1,19 @@
-﻿using System;
+﻿using SportRentals.Models.DBObjects;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 
-namespace SportRentals.Models
+namespace SportRentals.ViewModels
 {
-    public class OrderModel
+    public class OrderProductsViewModel
     {
         public int OrderID { get; set; }
-        public int CustomerID { get; set; }
-        public int ShopID { get; set; }
         public DateTime StartDate { get; set; }
         public DateTime EndDate { get; set; }
-        public double Total { get; set;}
+        public decimal Total { get; set; }
         public DateTime CreatedDateTime { get; set; }
+
+        public List<Product> Products = new List<Product>();
     }
 }

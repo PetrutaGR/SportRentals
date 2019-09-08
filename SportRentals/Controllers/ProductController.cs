@@ -10,7 +10,9 @@ namespace SportRentals.Controllers
     public class ProductController : Controller
     {
 
-        private Repository.ProductRepository productRepository = new Repository.ProductRepository();
+        private ProductRepository productRepository = new Repository.ProductRepository();
+        private CategoryRepository categoryRepository = new CategoryRepository();
+       
         // GET: Product
         public ActionResult Index()
         {
@@ -29,6 +31,10 @@ namespace SportRentals.Controllers
         // GET: Product/Create
         public ActionResult Create()
         {
+
+            var categories = categoryRepository.GetAllCategories();
+            SelectList lst = new SelectList(categories, "CategoryID", "Name");
+            ViewData["categories"] = lst;
             return View("CreateProduct");
         }
 
