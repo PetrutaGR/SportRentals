@@ -1,5 +1,6 @@
 ﻿using SportRentals.Models;
 using SportRentals.Repository;
+using SportRentals.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,6 +13,7 @@ namespace SportRentals.Controllers
     {
 
         private ShopRepository shopRepository = new ShopRepository();
+        private CategoryRepository categoryRepository = new CategoryRepository();
         // GET: Shop
         public ActionResult Index()
         {
@@ -27,9 +29,19 @@ namespace SportRentals.Controllers
             return View("Details", shopModel);
         }
 
+        public ActionResult ShopProducts (int id)
+        {
+            ShopProductsViewModel shopProductsViewModel = shopRepository.GetShopProducts(id);
+            return View("ShopProducts", shopProductsViewModel);
+        }
+
         // GET: Shop/Create
         public ActionResult Create()
         {
+
+            var categories = categoryRepository.GetAllCategories();
+            SelectList lst = new SelectList(categories, "CategoryID", "Name");
+            ViewData["categories"] = lst;
             return View("CreateShop");
         }
 

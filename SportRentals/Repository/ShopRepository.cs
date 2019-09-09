@@ -1,4 +1,6 @@
 ﻿using SportRentals.Models;
+using SportRentals.Models.DBObjects;
+using SportRentals.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -104,6 +106,32 @@ namespace SportRentals.Repository
 
             }
 
+        }
+
+        public ShopProductsViewModel GetShopProducts(int categoryID)
+        {
+            ShopProductsViewModel shopProductsViewModel = new ShopProductsViewModel();
+
+            Shop shop = dbContext.Shops.FirstOrDefault(x => x.CategoryID == categoryID);
+            if (shop != null)
+            {
+                shopProductsViewModel.Name = shop.Name;
+            }
+
+            IQueryable<Product> shopProducts = dbContext.Products.Where(x => x.CategoryID == categoryID);
+            foreach (Product dbProduct in shopProducts)
+            {
+                Models.DBObjects.Product productModel = new Models.DBObjects.Product();
+
+                productModel.Name = dbProduct.Name;
+                productModel.Description = dbProduct.Description;
+                productModel.DailyPrice = dbProduct.DailyPrice;
+                productModel.Stock = dbProduct.Stock;
+
+                shopProductsViewModel.Products.Add(productModel);
+
+            }
+            return shopProductsViewModel;
         }
     }
 }

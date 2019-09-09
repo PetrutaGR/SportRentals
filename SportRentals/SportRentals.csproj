@@ -187,6 +187,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\OrderController.cs" />
+    <Compile Include="Controllers\PaymentMethodController.cs" />
     <Compile Include="Controllers\ProductController.cs" />
     <Compile Include="Controllers\ShopController.cs" />
     <Compile Include="Global.asax.cs">
@@ -215,10 +216,13 @@
     <Compile Include="Repository\CustomerRepository.cs" />
     <Compile Include="Repository\OrderRepository.cs" />
     <Compile Include="Repository\OrderProductsRepository.cs" />
+    <Compile Include="Repository\PaymentMethodsRepository.cs" />
     <Compile Include="Repository\ProductRepository.cs" />
+    <Compile Include="Repository\ShopPaymentMethodsRepository.cs" />
     <Compile Include="Repository\ShopRepository.cs" />
     <Compile Include="Startup.cs" />
     <Compile Include="ViewModels\OrderProductsViewModel.cs" />
+    <Compile Include="ViewModels\ShopProductsViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="App_Data\SportEquipmentRentals.mdf" />
@@ -314,6 +318,12 @@
     <Content Include="Views\Order\EditOrder.cshtml" />
     <Content Include="Views\Order\Delete.cshtml" />
     <Content Include="Views\Order\OrderProducts.cshtml" />
+    <Content Include="Views\PaymentMethod\Delete.cshtml" />
+    <Content Include="Views\PaymentMethod\Edit.cshtml" />
+    <Content Include="Views\PaymentMethod\CreatePaymentMethod.cshtml" />
+    <Content Include="Views\PaymentMethod\Details.cshtml" />
+    <Content Include="Views\PaymentMethod\Index.cshtml" />
+    <Content Include="Views\Shop\ShopProducts.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{3259AA49-8AA1-44D3-9025-A0B520596A8C}" />
