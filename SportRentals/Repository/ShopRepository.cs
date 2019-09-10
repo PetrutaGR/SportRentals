@@ -133,5 +133,51 @@ namespace SportRentals.Repository
             }
             return shopProductsViewModel;
         }
+
+        public ShopViewModel GetCategoryNameByID( int CategoryID)
+        {
+            ShopViewModel shopNameforCategoryViewModel = new ShopViewModel();
+
+            Shop shop = dbContext.Shops.FirstOrDefault(x => x.CategoryID == CategoryID);
+            if (shop != null)
+            {
+                shopNameforCategoryViewModel.CategoryName = shop.Name;
+            }
+
+            return shopNameforCategoryViewModel;
+
+        }
+
+        public ShopViewModel GetShopViewModelByID(int ID)
+        {
+            ShopViewModel shopViewModel = new ShopViewModel();
+
+            Shop shop = dbContext.Shops.FirstOrDefault(x => x.ShopId == ID);
+            Category shopCategory = dbContext.Categories.FirstOrDefault(x => x.CategoryID == shop.CategoryID);
+            shopViewModel.CategoryName = shopCategory.Name;
+
+            List<ShopPaymentMethod> shopPaymentMethods = dbContext.ShopPaymentMethods.Where(x => x.ShopID == ID).ToList();
+
+            string paymentMethods = "";
+            foreach (var item in shopPaymentMethods)
+            {
+                PaymentMethod paymentMethod = dbContext.PaymentMethods.FirstOrDefault(x => x.PaymentMethodID == item.PaymentMethodID);
+                paymentMethods += paymentMethod.Name + " ";
+            }
+
+            shopViewModel.PaymentMethods = paymentMethods;
+
+            return shopViewModel;
+        }
+
+
+
+
+
+
+
     }
+
+
+    
 }

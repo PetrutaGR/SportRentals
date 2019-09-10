@@ -58,5 +58,10 @@ namespace SportRentals.Repository
             }
             return categoryList;
         }
+
+        public CategoryModel GetCategoryByID( int ID)
+        {
+            return MapDbObjectToModel(dbContext.Categories.FirstOrDefault(x => x.CategoryID == ID));
+        }
     }
 }

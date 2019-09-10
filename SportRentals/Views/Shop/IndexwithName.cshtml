@@ -1,0 +1,38 @@
+﻿@model SportRentals.ViewModels.ShopViewModel
+
+@{
+    ViewBag.Title = "IndexwithName";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>IndexwithName</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.PaymentMethods)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CategoryName)
+        </th>
+        <th></th>
+    </tr>
+
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => modelItem.PaymentMethods)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => modelItem.CategoryName)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+            @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+            @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+        </td>
+    </tr>
+
+</table>

@@ -13,6 +13,7 @@ namespace SportRentals.Models
         public string Phone { get; set; }
         public string Email { get; set; }
         public int CategoryID { get; set; }
+        public string CategoryName { get; set; }
 
 
 

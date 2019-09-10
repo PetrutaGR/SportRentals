@@ -222,6 +222,7 @@
     <Compile Include="Repository\ShopRepository.cs" />
     <Compile Include="Startup.cs" />
     <Compile Include="ViewModels\OrderProductsViewModel.cs" />
+    <Compile Include="ViewModels\ShopViewModel.cs" />
     <Compile Include="ViewModels\ShopProductsViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -324,6 +325,8 @@
     <Content Include="Views\PaymentMethod\Details.cshtml" />
     <Content Include="Views\PaymentMethod\Index.cshtml" />
     <Content Include="Views\Shop\ShopProducts.cshtml" />
+    <Content Include="Views\Shop\ShopView.cshtml" />
+    <Content Include="Views\Shop\IndexwithName.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{3259AA49-8AA1-44D3-9025-A0B520596A8C}" />

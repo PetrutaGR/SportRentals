@@ -22,11 +22,19 @@ namespace SportRentals.Controllers
             return View("Index", shops);
         }
 
+        
+
         // GET: Shop/Details/5
         public ActionResult Details(int id)
         {
             ShopModel shopModel = shopRepository.GetShopByID(id);
             return View("Details", shopModel);
+        }
+
+        public ActionResult IndexwithName(int id)
+        {
+            ShopViewModel shopviewModel = shopRepository.GetShopViewModelByID(id);
+            return View("IndexwithName", shopviewModel);
         }
 
         public ActionResult ShopProducts (int id)
