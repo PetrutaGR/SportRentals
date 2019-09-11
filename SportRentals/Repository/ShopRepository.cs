@@ -165,7 +165,7 @@ namespace SportRentals.Repository
                 paymentMethods += paymentMethod.Name + " ";
             }
 
-            shopViewModel.PaymentMethods = paymentMethods;
+             shopViewModel.PaymentMethods = paymentMethods;
 
             return shopViewModel;
         }

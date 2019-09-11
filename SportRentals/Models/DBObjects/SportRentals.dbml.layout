@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<ordesignerObjectsDiagram dslVersion="1.0.0.0" absoluteBounds="0, 0, 12.875, 8.5" name="SportRentals">
+<ordesignerObjectsDiagram dslVersion="1.0.0.0" absoluteBounds="0, 0, 12.875, 9" name="SportRentals">
   <DataContextMoniker Name="/SportRentalsDataContext" />
   <nestedChildShapes>
     <classShape Id="13190db5-511c-4405-b5f7-cef625bd1fa0" absoluteBounds="1.125, 0.625, 2, 2.1554996744791666">
@@ -8,29 +8,10 @@
         <elementListCompartment Id="a2f40ed8-d67b-4760-ad57-4ede3e22f984" absoluteBounds="1.1400000000000001, 1.085, 1.9700000000000002, 1.5954996744791665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <classShape Id="b044abde-bae3-400e-8386-328ad85c97b8" absoluteBounds="3.875, 1.625, 2, 1.9631982421875">
-      <DataClassMoniker Name="/SportRentalsDataContext/Customer" />
-      <nestedChildShapes>
-        <elementListCompartment Id="72bd68e7-566d-4317-b5aa-44bbfe6aa5cf" absoluteBounds="3.8899999999999997, 2.085, 1.9700000000000002, 1.4031982421875" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
-      </nestedChildShapes>
-    </classShape>
-    <associationConnector edgePoints="[(3.125 : 2.20274983723958); (3.875 : 2.20274983723958)]" fixedFrom="Algorithm" fixedTo="Algorithm">
-      <AssociationMoniker Name="/SportRentalsDataContext/Address/Address_Customer" />
-      <nodes>
-        <classShapeMoniker Id="13190db5-511c-4405-b5f7-cef625bd1fa0" />
-        <classShapeMoniker Id="b044abde-bae3-400e-8386-328ad85c97b8" />
-      </nodes>
-    </associationConnector>
     <classShape Id="01445330-36db-4c15-890d-b516149c3159" absoluteBounds="6.875, 1, 2, 1.3862939453125">
       <DataClassMoniker Name="/SportRentalsDataContext/PaymentMethod" />
       <nestedChildShapes>
         <elementListCompartment Id="0d570cb0-fd15-4682-8968-1742af9f481b" absoluteBounds="6.89, 1.46, 1.9700000000000002, 0.8262939453125" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
-      </nestedChildShapes>
-    </classShape>
-    <classShape Id="f8649027-c501-4b9b-8157-ae0cf52b7e1c" absoluteBounds="6.625, 6.125, 2, 1.9631982421875">
-      <DataClassMoniker Name="/SportRentalsDataContext/Product" />
-      <nestedChildShapes>
-        <elementListCompartment Id="44b6e4d3-ddbf-4ab3-a4ba-5fc7acd44b9a" absoluteBounds="6.6400000000000006, 6.585, 1.9700000000000002, 1.4031982421875" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
     <classShape Id="89ef043b-5b32-4780-8500-8ee061dcc21c" absoluteBounds="9.625, 4, 2, 1.1939925130208333">
@@ -39,7 +20,7 @@
         <elementListCompartment Id="bc641d82-ab15-440e-9823-5cad8144f9f1" absoluteBounds="9.64, 4.46, 1.9700000000000002, 0.63399251302083326" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <associationConnector edgePoints="[(8.875 : 2.3862939453125); (9.25 : 2.7612939453125); (9.25 : 4.59699625651042); (9.625 : 4.59699625651042)]" fixedFrom="NotFixed" fixedTo="Algorithm">
+    <associationConnector edgePoints="[(8.875 : 2.3862939453125); (9.25 : 2.7612939453125); (9.25 : 4.59699625651042); (9.625 : 4.59699625651042)]" fixedFrom="NotFixed" fixedTo="NotFixed">
       <AssociationMoniker Name="/SportRentalsDataContext/PaymentMethod/PaymentMethod_ShopPaymentMethod" />
       <nodes>
         <classShapeMoniker Id="01445330-36db-4c15-890d-b516149c3159" />
@@ -52,7 +33,7 @@
         <elementListCompartment Id="06ace58e-e135-491e-8a44-131a033305d8" absoluteBounds="10.64, 1.335, 1.9700000000000002, 1.4031982421875" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <associationConnector edgePoints="[(11.125 : 2.8381982421875); (11.125 : 4)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+    <associationConnector edgePoints="[(11.125 : 2.8381982421875); (11.125 : 4)]" fixedFrom="NotFixed" fixedTo="NotFixed">
       <AssociationMoniker Name="/SportRentalsDataContext/Shop/Shop_ShopPaymentMethod" />
       <nodes>
         <classShapeMoniker Id="066030b4-897b-4721-a132-1495442fa2dc" />
@@ -72,14 +53,7 @@
         <elementListCompartment Id="c9f513f3-4ded-4907-a901-1aa6379a6e63" absoluteBounds="9.515, 6.71, 1.9700000000000002, 0.8262939453125" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <associationConnector edgePoints="[(9.5 : 6.94314697265625); (8.625 : 6.94314697265625)]" fixedFrom="Algorithm" fixedTo="Algorithm">
-      <AssociationMoniker Name="/SportRentalsDataContext/Category/Category_Product" />
-      <nodes>
-        <classShapeMoniker Id="80c3da27-52dd-484c-85f3-5088ec0732dc" />
-        <classShapeMoniker Id="f8649027-c501-4b9b-8157-ae0cf52b7e1c" />
-      </nodes>
-    </associationConnector>
-    <associationConnector edgePoints="[(11.5 : 6.94314697265625); (12.15625 : 6.94314697265625); (12.15625 : 2.8381982421875)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+    <associationConnector edgePoints="[(11.5 : 6.94314697265625); (12.15625 : 6.94314697265625); (12.15625 : 2.8381982421875)]" fixedFrom="NotFixed" fixedTo="NotFixed">
       <AssociationMoniker Name="/SportRentalsDataContext/Category/Category_Shop" />
       <nodes>
         <classShapeMoniker Id="80c3da27-52dd-484c-85f3-5088ec0732dc" />
@@ -92,14 +66,7 @@
         <elementListCompartment Id="99c70b8e-18e9-4f6e-bfeb-4457ac1209fc" absoluteBounds="6.6400000000000006, 3.71, 1.9700000000000002, 1.7878011067708335" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <associationConnector edgePoints="[(5.875 : 2.84939647265625); (6.71875 : 2.84939647265625); (6.71875 : 3.25)]" fixedFrom="Algorithm" fixedTo="Algorithm">
-      <AssociationMoniker Name="/SportRentalsDataContext/Customer/Customer_Order" />
-      <nodes>
-        <classShapeMoniker Id="b044abde-bae3-400e-8386-328ad85c97b8" />
-        <classShapeMoniker Id="375b58c1-c1e3-4b8a-bcd9-536086ede195" />
-      </nodes>
-    </associationConnector>
-    <associationConnector edgePoints="[(10.625 : 2.64349609375); (9.21553548177083 : 2.64349609375 : JumpStart); (9.04886881510417 : 2.64349609375 : JumpEnd); (6.7500025 : 2.64349609375); (6.7500025 : 3.25)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+    <associationConnector edgePoints="[(11.8906225 : 2.8381982421875); (11.8906225 : 3.59375); (11.2083333333333 : 3.59375 : JumpStart); (11.0416666666667 : 3.59375 : JumpEnd); (9.33333333333333 : 3.59375 : JumpStart); (9.16666666666667 : 3.59375 : JumpEnd); (8.625 : 3.59375)]" fixedFrom="Algorithm" fixedTo="Algorithm">
       <AssociationMoniker Name="/SportRentalsDataContext/Shop/Shop_Order" />
       <nodes>
         <classShapeMoniker Id="066030b4-897b-4721-a132-1495442fa2dc" />
@@ -112,18 +79,51 @@
         <elementListCompartment Id="8e3bd362-bf18-4cdb-8a51-c5e920fc6116" absoluteBounds="3.8900000000000006, 6.46, 1.9700000000000002, 0.63399251302083326" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <associationConnector edgePoints="[(6.625 : 6.65949625651042); (5.875 : 6.65949625651042)]" fixedFrom="Algorithm" fixedTo="Algorithm">
-      <AssociationMoniker Name="/SportRentalsDataContext/Product/Product_OrderProduct" />
-      <nodes>
-        <classShapeMoniker Id="f8649027-c501-4b9b-8157-ae0cf52b7e1c" />
-        <classShapeMoniker Id="d5520bb3-88cb-4e07-b42e-dbdb075e0fd2" />
-      </nodes>
-    </associationConnector>
-    <associationConnector edgePoints="[(6.625 : 4.45515305338542); (4.875 : 4.45515305338542); (4.875 : 6)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+    <associationConnector edgePoints="[(6.625 : 4.93674967447917); (4.28125 : 4.93674967447917); (4.28125 : 6)]" fixedFrom="Algorithm" fixedTo="Algorithm">
       <AssociationMoniker Name="/SportRentalsDataContext/Order/Order_OrderProduct" />
       <nodes>
         <classShapeMoniker Id="375b58c1-c1e3-4b8a-bcd9-536086ede195" />
         <classShapeMoniker Id="d5520bb3-88cb-4e07-b42e-dbdb075e0fd2" />
+      </nodes>
+    </associationConnector>
+    <classShape Id="a451626c-0a89-4d47-a5df-88c8600765b1" absoluteBounds="7.25, 6.625, 2, 2.1554996744791666">
+      <DataClassMoniker Name="/SportRentalsDataContext/Product" />
+      <nestedChildShapes>
+        <elementListCompartment Id="352534e9-d96b-4593-a6f0-d940fac21035" absoluteBounds="7.265, 7.085, 1.9700000000000002, 1.5954996744791665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <associationConnector edgePoints="[(7.25 : 6.90949625651042); (5.875 : 6.90949625651042)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/SportRentalsDataContext/Product/Product_OrderProduct" />
+      <nodes>
+        <classShapeMoniker Id="a451626c-0a89-4d47-a5df-88c8600765b1" />
+        <classShapeMoniker Id="d5520bb3-88cb-4e07-b42e-dbdb075e0fd2" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(9.5 : 7.13064697265625); (9.25 : 7.13064697265625)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/SportRentalsDataContext/Category/Category_Product" />
+      <nodes>
+        <classShapeMoniker Id="80c3da27-52dd-484c-85f3-5088ec0732dc" />
+        <classShapeMoniker Id="a451626c-0a89-4d47-a5df-88c8600765b1" />
+      </nodes>
+    </associationConnector>
+    <classShape Id="c9d8e0c4-b3b7-494f-9a3e-4cb45b260c7f" absoluteBounds="4.125, 1.375, 2, 1.9631982421875">
+      <DataClassMoniker Name="/SportRentalsDataContext/Customer" />
+      <nestedChildShapes>
+        <elementListCompartment Id="37b20213-f2b9-43c5-bcc0-55c9739e0719" absoluteBounds="4.14, 1.835, 1.9700000000000002, 1.4031982421875" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <associationConnector edgePoints="[(5.125 : 3.3381982421875); (5.125 : 4.10622245833333); (6.625 : 4.10622245833333)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/SportRentalsDataContext/Customer/Customer_Order" />
+      <nodes>
+        <classShapeMoniker Id="c9d8e0c4-b3b7-494f-9a3e-4cb45b260c7f" />
+        <classShapeMoniker Id="375b58c1-c1e3-4b8a-bcd9-536086ede195" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(3.125 : 2.07774983723958); (4.125 : 2.07774983723958)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/SportRentalsDataContext/Address/Address_Customer" />
+      <nodes>
+        <classShapeMoniker Id="13190db5-511c-4405-b5f7-cef625bd1fa0" />
+        <classShapeMoniker Id="c9d8e0c4-b3b7-494f-9a3e-4cb45b260c7f" />
       </nodes>
     </associationConnector>
   </nestedChildShapes>

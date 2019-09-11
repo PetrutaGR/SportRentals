@@ -14,6 +14,9 @@ namespace SportRentals.Models
         public string Description { get; set; }
         public decimal DailyPrice { get; set; }
         public int Stock { get; set; }
+        public string ImageUrl { get; set; }
+
+
         
     }
 }

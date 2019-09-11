@@ -8,7 +8,7 @@ namespace SportRentals.Models
     public class CustomerModel
     {
         public int CustomerID { get; set; }
-        public int AddressID { get; set; }
+        public int? AddressID { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public string Phone { get; set; }

@@ -1,0 +1,26 @@
+﻿@model IEnumerable<SportRentals.Models.ProductModel>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Index</h2>
+
+<p>
+    Sports Equipments
+</p>
+<table class="table">
+@foreach (var item in Model) {
+    <div>
+        <div>
+            <img src=" @Html.DisplayFor(modelItem => item.ImageUrl)"/><br/>
+            <b>@Html.DisplayFor(modelItem => item.Name)</b><br />
+            Description: @Html.DisplayFor(modelItem => item.Description)<br />
+            Price: @Html.DisplayFor(modelItem => item.DailyPrice)<br />
+            Stock :@Html.DisplayFor(modelItem => item.Stock)<br />
+        </div>
+    </div>
+}
+
+</table>

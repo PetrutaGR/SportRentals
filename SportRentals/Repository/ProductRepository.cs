@@ -31,6 +31,7 @@ namespace SportRentals.Repository
                 dbProduct.Description = productModel.Description;
                 dbProduct.DailyPrice = productModel.DailyPrice;
                 dbProduct.Stock = productModel.Stock;
+                dbProduct.ImageUrl = productModel.ImageUrl;
 
                 return dbProduct;
             }
@@ -49,6 +50,7 @@ namespace SportRentals.Repository
                 productModel.Description = dbProduct.Description;
                 productModel.DailyPrice = dbProduct.DailyPrice;
                 productModel.Stock = dbProduct.Stock;
+                productModel.ImageUrl = dbProduct.ImageUrl;
 
                 return productModel;
             }
@@ -92,6 +94,7 @@ namespace SportRentals.Repository
                 existingProduct.Description = productModel.Description;
                 existingProduct.DailyPrice = productModel.DailyPrice;
                 existingProduct.Stock = productModel.Stock;
+                existingProduct.ImageUrl = productModel.ImageUrl;
 
                 dbContext.SubmitChanges();
 
