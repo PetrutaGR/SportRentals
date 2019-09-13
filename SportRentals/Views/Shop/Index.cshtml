@@ -8,7 +8,7 @@
 <h2>Index</h2>
 
 <p>
-    @Html.ActionLink("Add new Shop", "Create")
+    @Html.ActionLink("Add new Shop", "Create", null,new { @class = "btn btn-primary" })
 </p>
 <table class="table">
     <tr>
@@ -54,11 +54,11 @@
             @Html.DisplayFor(modelItem => item.CategoryID)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id = item.ShopId }) |
-            @Html.ActionLink("Details", "Details", new { id = item.ShopId }) |
-            @Html.ActionLink("Delete", "Delete", new { id = item.ShopId })|
-            @Html.ActionLink("ShopProducts", "ShopProducts", new { id = item.CategoryID })|
-            @Html.ActionLink("Name", "IndexwithName", new { id = item.ShopId })|
+            @Html.ActionLink("Edit", "Edit", new { id = item.ShopId },new { @class = "btn btn-primary" }) 
+            @Html.ActionLink("Details", "Details", new { id = item.ShopId },new { @class = "btn btn-primary" }) 
+            @Html.ActionLink("Delete", "Delete", new { id = item.ShopId },new { @class = "btn btn-warning" })
+            @Html.ActionLink("ShopProducts", "ShopProducts", new { id = item.CategoryID },new { @class = "btn btn-primary" })
+            @Html.ActionLink("Name", "IndexwithName", new { id = item.ShopId },new { @class = "btn btn-primary" })
         </td>
     </tr>
 }

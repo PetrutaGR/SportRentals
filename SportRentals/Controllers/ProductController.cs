@@ -14,15 +14,17 @@ namespace SportRentals.Controllers
 
         private ProductRepository productRepository = new Repository.ProductRepository();
         private CategoryRepository categoryRepository = new CategoryRepository();
-       
-        // GET: Product
-        
 
+        // GET: Product
+
+        [Authorize(Roles = "Admin")]
         public ActionResult Index()
         {
             List<ProductModel> products = productRepository.GetAllProducts();
             return View("Index", products);
         }
+
+        [Authorize(Roles = "User")]
         public ActionResult ProductDetails()
         {
             List<ProductCategoryViewModel> products = productRepository.GetAllProductwithName();
@@ -30,7 +32,7 @@ namespace SportRentals.Controllers
         }
 
 
-        // GET: Product/Details/5
+        [Authorize(Roles = "Admin")]
         public ActionResult Details(int id)
         {
 
@@ -38,7 +40,7 @@ namespace SportRentals.Controllers
             return View("Details", productModel);
         }
 
-        // GET: Product/Create
+        [Authorize(Roles = "Admin")]
         public ActionResult Create()
         {
 
@@ -48,8 +50,8 @@ namespace SportRentals.Controllers
             return View("CreateProduct");
         }
 
-        
-        // POST: Product/Create
+
+        [Authorize(Roles = "Admin")]
         [HttpPost]
         public ActionResult Create(FormCollection collection)
         {
@@ -69,7 +71,7 @@ namespace SportRentals.Controllers
             }
         }
 
-        // GET: Product/Edit/5
+        [Authorize(Roles = "Admin")]
         public ActionResult Edit(int id)
         {
 
@@ -77,7 +79,7 @@ namespace SportRentals.Controllers
             return View("EditProduct", productModel);
         }
 
-        // POST: Product/Edit/5
+        [Authorize(Roles = "Admin")]
         [HttpPost]
         public ActionResult Edit(int id, FormCollection collection)
         {
@@ -97,7 +99,7 @@ namespace SportRentals.Controllers
             }
         }
 
-        // GET: Product/Delete/5
+        [Authorize(Roles = "Admin")]
         public ActionResult Delete(int id)
         {
 
@@ -106,7 +108,7 @@ namespace SportRentals.Controllers
             return View("DeleteProduct", productModel);
         }
 
-        // POST: Product/Delete/5
+        [Authorize(Roles = "Admin")]
         [HttpPost]
         public ActionResult Delete(int id, FormCollection collection)
         {
