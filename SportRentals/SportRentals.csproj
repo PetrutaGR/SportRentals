@@ -224,6 +224,7 @@
     <Compile Include="Repository\ShopRepository.cs" />
     <Compile Include="Startup.cs" />
     <Compile Include="ViewModels\OrderProductsViewModel.cs" />
+    <Compile Include="ViewModels\ProductCategoryViewModel.cs" />
     <Compile Include="ViewModels\ShopViewModel.cs" />
     <Compile Include="ViewModels\ShopProductsViewModel.cs" />
   </ItemGroup>
@@ -296,7 +297,6 @@
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Product\CreateProduct.cshtml" />
-    <Content Include="Views\Product\Index.cshtml" />
     <Content Include="Views\Product\EditProduct.cshtml" />
     <Content Include="Views\Product\DeleteProduct.cshtml" />
     <Content Include="Views\Product\Details.cshtml" />
@@ -332,6 +332,8 @@
     <Content Include="Views\ProductUser\Index.cshtml" />
     <Content Include="Views\Home\SendEmail.cshtml" />
     <Content Include="Views\Invoicing\Index.cshtml" />
+    <Content Include="Views\Product\ProductDetails.cshtml" />
+    <Content Include="Views\Product\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{3259AA49-8AA1-44D3-9025-A0B520596A8C}" />

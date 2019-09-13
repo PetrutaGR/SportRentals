@@ -4,6 +4,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using SportRentals.ViewModels;
+using SportRentals.Models;
 
 namespace SportRentals.Controllers
 {
@@ -14,11 +16,19 @@ namespace SportRentals.Controllers
         private CategoryRepository categoryRepository = new CategoryRepository();
        
         // GET: Product
+        
+
         public ActionResult Index()
         {
-            List<Models.ProductModel> products = productRepository.GetAllProducts();
+            List<ProductModel> products = productRepository.GetAllProducts();
             return View("Index", products);
         }
+        public ActionResult ProductDetails()
+        {
+            List<ProductCategoryViewModel> products = productRepository.GetAllProductwithName();
+            return View("ProductDetails", products);
+        }
+
 
         // GET: Product/Details/5
         public ActionResult Details(int id)
@@ -38,6 +48,7 @@ namespace SportRentals.Controllers
             return View("CreateProduct");
         }
 
+        
         // POST: Product/Create
         [HttpPost]
         public ActionResult Create(FormCollection collection)

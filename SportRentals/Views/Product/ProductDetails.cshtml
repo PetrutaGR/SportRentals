@@ -1,11 +1,11 @@
-﻿@model IEnumerable<SportRentals.Models.ProductModel>
+﻿@model IEnumerable<SportRentals.ViewModels.ProductCategoryViewModel>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "ProductDetails";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Index</h2>
+<h2>ProductDetails</h2>
 
 <p>
     @Html.ActionLink("Create New", "Create")
@@ -14,9 +14,6 @@
     <tr>
         <th>
             @Html.DisplayNameFor(model => model.ProductID)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.CategoryID)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.Name)
@@ -31,6 +28,9 @@
             @Html.DisplayNameFor(model => model.Stock)
         </th>
         <th>
+            @Html.DisplayNameFor(model => model.CategoryName)
+        </th>
+        <th>
             @Html.DisplayNameFor(model => model.ImageUrl)
         </th>
         <th></th>
@@ -40,10 +40,7 @@
     <tr>
         <td>
             @Html.DisplayFor(modelItem => item.ProductID)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.CategoryID)
-        </td>
+        </td>        
         <td>
             @Html.DisplayFor(modelItem => item.Name)
         </td>
@@ -57,12 +54,15 @@
             @Html.DisplayFor(modelItem => item.Stock)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.ImageUrl)
+            @Html.DisplayFor(modelItem => item.CategoryName)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.ProductID }) |
-            @Html.ActionLink("Details", "Details", new {  id=item.ProductID}) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.ProductID })
+            <img src=" @Html.DisplayFor(modelItem => item.ImageUrl)" />
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+            @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+            @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
         </td>
     </tr>
 }

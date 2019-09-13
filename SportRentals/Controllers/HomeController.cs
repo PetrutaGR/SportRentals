@@ -12,10 +12,16 @@ namespace SportRentals.Controllers
     {
         public ActionResult Index()
         {
+            Session["valoare"] = 12;
             return View("SendEmail");
         }
         public ActionResult SendEmail()
         {
+            if (Session["valoare"] != null)
+            {
+                int x = 0;
+                x = int.Parse(Session["valoare"].ToString());
+            }
             return View();
         }
 
@@ -26,9 +32,9 @@ namespace SportRentals.Controllers
             {
                 if (ModelState.IsValid)
                 {
-                    var senderEmail = new MailAddress("jamilmoughal786@gmail.com", "Jamil");
-                    var receiverEmail = new MailAddress(receiver, "Receiver");
-                    var password = "Your Email Password here";
+                    var senderEmail = new MailAddress("gbrlpetruta@gmail.com", "Gabriela");
+                    var receiverEmail = new MailAddress(receiver, "gabrielarotar26@gmail.com");
+                    var password = "Proiect.2019";
                     var sub = subject;
                     var body = message;
                     var smtp = new SmtpClient
@@ -51,7 +57,7 @@ namespace SportRentals.Controllers
                     return View();
                 }
             }
-            catch (Exception)
+            catch (Exception )
             {
                 ViewBag.Error = "Some Error";
             }
