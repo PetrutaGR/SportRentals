@@ -239,7 +239,9 @@
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
-    <Content Include="Content\Image\winter.jpg" />
+    <Content Include="Content\header_g_winterabseits.jpg" />
+    <Content Include="Content\Image\download.jpg" />
+    <Content Include="Content\Image\xski3-1200x800.jpg" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
