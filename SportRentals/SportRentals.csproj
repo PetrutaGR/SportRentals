@@ -241,7 +241,15 @@
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\header_g_winterabseits.jpg" />
     <Content Include="Content\Image\download.jpg" />
+    <Content Include="Content\Image\ski-picture.jpg" />
+    <Content Include="Content\Image\ski-slopes-meribel-france-conde-nast-traveller-20oct17-getty_200502514-001.jpg" />
     <Content Include="Content\Image\xski3-1200x800.jpg" />
+    <Content Include="Content\templated-assembly\default.css" />
+    <Content Include="Content\templated-assembly\fonts.css" />
+    <Content Include="Content\templated-assembly\fonts\fontawesome-webfont.svg" />
+    <Content Include="Content\templated-assembly\images\header-bg.jpg" />
+    <Content Include="Content\templated-assembly\index.html" />
+    <Content Include="Content\templated-assembly\license.txt" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -253,6 +261,10 @@
       <LastGenOutput>SportRentals.designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
     </Content>
+    <Content Include="Content\templated-assembly\fonts\fontawesome-webfont.eot" />
+    <Content Include="Content\templated-assembly\fonts\fontawesome-webfont.ttf" />
+    <Content Include="Content\templated-assembly\fonts\fontawesome-webfont.woff" />
+    <Content Include="Content\templated-assembly\fonts\FontAwesome.otf" />
     <None Include="Models\DBObjects\SportRentals.dbml.layout">
       <DependentUpon>SportRentals.dbml</DependentUpon>
     </None>
@@ -267,6 +279,7 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
+    <None Include="Views\Shared\_assemblylayout.cshtml" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>

@@ -1,0 +1,90 @@
+﻿<!DOCTYPE html> <!--1-->
+
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>@ViewBag.Title - My ASP.NET Application <!--2 -->
+</title>
+<meta name="keywords" content="" />
+<meta name="description" content="" />
+<link href="http://fonts.googleapis.com/css?family=Didact+Gothic" rel="stylesheet" /><!--3 -->
+    @Styles.Render("~/Content/templated-assembly/default.css")
+    @Scripts.Render("~/Content/templated-assembly/fonts.css")
+
+
+<!--[if IE 6]><link href="default_ie6.css" rel="stylesheet" type="text/css" /><![endif]-->
+
+</head>
+<body>
+    <div style="float:right;"> @Html.Partial("_LoginPartial")</div>
+
+    <div id="header" class="container">
+        <div id="logo">
+            @*<h1><a href="#">@Html.ActionLink("Sport Rentals", "Index", "Home")</a></h1>*@
+            @Html.ActionLink("Sport Rentals", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+        </div>
+
+
+        <div id="menu">
+            <ul>
+
+
+                @{ if (User.IsInRole("User"))
+                    {
+                        <li><strong>@Html.ActionLink("Book a product", "Index", "ProductUser")</strong></li>
+                        <li><strong>@Html.ActionLink("ProductDetails", "ProductDetails", "Product")</strong></li>
+
+
+                    }
+
+                }
+
+
+                <li><strong>@Html.ActionLink("About", "About", "Home")</strong></li>
+                <li><strong>@Html.ActionLink("Contact", "Contact", "Home")</strong></li>
+
+
+
+
+                @{ if (User.IsInRole("Admin"))
+                    {
+
+                        <li><strong>@Html.ActionLink("Customers", "Index", "Customer")</strong></li>
+                        <li><strong>@Html.ActionLink("Shops", "Index", "Shop")</strong></li>
+                        <li><strong>@Html.ActionLink("Orders", "Index", "Order")</strong></li>
+
+                        <li><strong>@Html.ActionLink("Invoicing", "Index", "Invoicing")</strong></li>
+                        <li><strong>@Html.ActionLink("Products", "Index", "Product")</strong></li>
+
+
+                    }
+                }
+                @*<li class="active">@Html.ActionLink("Home", "Index", "Home")</li>
+                <li>@Html.ActionLink("About", "About", "Home")</li>
+                <li>@Html.ActionLink("Contact", "Contact", "Home")</li>*@
+                @*<li class="active"><a href="#" accesskey="1" title="">Homepage</a></li>
+        <li><a href="#" accesskey="2" title="">Our Clients</a></li>
+        <li><a href="#" accesskey="3" title="">About Us</a></li>
+        <li><a href="#" accesskey="4" title="">Careers</a></li>
+        <li><a href="#" accesskey="5" title="">Contact Us</a></li>*@
+            </ul>
+        </div>
+    </div>
+    <div id="page">
+        <div class="container">
+            @RenderSection("featured", required: false)
+            @RenderBody()
+        </div>
+
+    </div>
+
+
+    <div id="copyright" class="container">
+        <p>&copy; @DateTime.Now.Year -My ASP.NET MVC Application</p>
+    </div>
+    @Scripts.Render("1/bundles/jquery")
+    @RenderSection("scripts", required: false)
+
+
+</body>
+</html>
