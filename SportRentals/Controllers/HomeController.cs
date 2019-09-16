@@ -17,7 +17,14 @@ namespace SportRentals.Controllers
             return View("Index");
         }
 
-     
+        public ActionResult ReadMore()
+        {
+
+            return View("ReadMore");
+        }
+
+
+
         public ActionResult About()
         {
             ViewBag.Message = "";

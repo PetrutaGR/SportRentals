@@ -22,7 +22,14 @@ namespace SportRentals.Controllers
             return View("Index", shops);
         }
 
-        
+        public ActionResult ShopUI()
+        {
+
+            List<ShopModel> shops = shopRepository.GetAllShops();
+            return View("ShopUI", shops);
+        }
+
+
 
         // GET: Shop/Details/5
         public ActionResult Details(int id)

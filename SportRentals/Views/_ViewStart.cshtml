@@ -1,4 +1,17 @@
-﻿@{
-    //Layout = "~/Views/Shared/_Layout.cshtml";
-    Layout = "~/Views/Shared/_assemblylayout.cshtml";
+﻿
+
+@{ if (User.IsInRole("Admin"))
+    {
+        Layout = "~/Views/Shared/_Layout.cshtml";
+        //Layout = "~/Views/Shared/_assemblylayout.cshtml";
+
+    }
+    else
+    {
+        Layout = "~/Views/Shared/_assemblylayout.cshtml";
+
+    }
+
 }
+
+

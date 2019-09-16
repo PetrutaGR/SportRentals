@@ -16,52 +16,49 @@
 
 </head>
 <body>
-    <div style="float:right;"> @Html.Partial("_LoginPartial")</div>
+ <div id="header-wrapper">
+      <div style="float:right;"> @Html.Partial("_LoginPartial")</div>
+
+
 
     <div id="header" class="container">
         <div id="logo">
-            @*<h1><a href="#">@Html.ActionLink("Sport Rentals", "Index", "Home")</a></h1>*@
-            @Html.ActionLink("Sport Rentals", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+           
+            <p style="font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;font-size:30px;font-style:normal;">
+               SkiRentals
+            </p>
+
+
         </div>
 
 
         <div id="menu">
+
             <ul>
-
-
                 @{ if (User.IsInRole("User"))
                     {
-                        <li><strong>@Html.ActionLink("Book a product", "Index", "ProductUser")</strong></li>
-                        <li><strong>@Html.ActionLink("ProductDetails", "ProductDetails", "Product")</strong></li>
-
-
+                        @*<li><strong>@Html.ActionLink("Book a product", "Index", "ProductUser")</strong></li>*@
+                        @*<li><strong>@Html.ActionLink("ProductDetails", "ProductDetails", "Product")</strong></li>*@
+                        @*<li><strong>@Html.ActionLink("About", "About", "Home")</strong></li>
+                        <li><strong>@Html.ActionLink("Contact", "Contact", "Home")</strong></li>*@
                     }
 
                 }
-
-
-                <li><strong>@Html.ActionLink("About", "About", "Home")</strong></li>
-                <li><strong>@Html.ActionLink("Contact", "Contact", "Home")</strong></li>
-
-
-
-
+              
                 @{ if (User.IsInRole("Admin"))
                     {
 
                         <li><strong>@Html.ActionLink("Customers", "Index", "Customer")</strong></li>
-                        <li><strong>@Html.ActionLink("Shops", "Index", "Shop")</strong></li>
                         <li><strong>@Html.ActionLink("Orders", "Index", "Order")</strong></li>
+                        <li><strong>@Html.ActionLink("Shops", "Index", "Shop")</strong></li>
 
                         <li><strong>@Html.ActionLink("Invoicing", "Index", "Invoicing")</strong></li>
                         <li><strong>@Html.ActionLink("Products", "Index", "Product")</strong></li>
-
-
                     }
                 }
                 @*<li class="active">@Html.ActionLink("Home", "Index", "Home")</li>
-                <li>@Html.ActionLink("About", "About", "Home")</li>
-                <li>@Html.ActionLink("Contact", "Contact", "Home")</li>*@
+        <li>@Html.ActionLink("About", "About", "Home")</li>
+        <li>@Html.ActionLink("Contact", "Contact", "Home")</li>*@
                 @*<li class="active"><a href="#" accesskey="1" title="">Homepage</a></li>
         <li><a href="#" accesskey="2" title="">Our Clients</a></li>
         <li><a href="#" accesskey="3" title="">About Us</a></li>
@@ -70,6 +67,59 @@
             </ul>
         </div>
     </div>
+
+    <div id="banner" class="container">
+        <div class="title">
+            <h2 data-locnmethod="withip">NEVER BE <font color="white"> UN</font>EQUIPPED</h2>
+            <span class="byline">Discover now affordable rental sport equipment </span>
+        </div>
+        <ul class="actions">
+            <li>@Html.ActionLink("Read more", "ReadMore", null, new { @class = "btn btn-info", @role = "button", @style = "color:white" })</li>
+        </ul>
+
+
+
+    </div>  
+</div>
+
+    <div id="wrapper">
+        <div id="three-column" class="container">
+            <div class="title">
+                <h2>SKI EQUIPMENT CATEGORIES AND ACCESORIES</h2>
+                <span class="byline">Pick up your equipment and get ready for winter experiences</span>
+            </div>
+
+            <div class="boxA">
+                <p>Snowboards</p>
+                <img style="height: 200px; width: 100%; display: block;" src="https://image.flaticon.com/icons/svg/38/38491.svg" />
+                <a href="#" class="button button-alt">Reserve Now</a>
+            </div>
+            <div class="boxB">
+                <p>Ski Packages</p>
+                <img style="height: 200px; width: 100%; display: block;" src="https://image.flaticon.com/icons/svg/8/8122.svg"/>
+                <a href="#" class="button button-alt">Reserve Now</a>
+            </div>
+            <div class="boxC">
+                <p>Ski Clothes</p>
+                <img style="height: 200px; width: 100%; display: block;" src="https://image.flaticon.com/icons/svg/2093/2093841.svg"/>
+                <a href="#" class="button button-alt">Reserve Now</a>
+            </div>
+            
+        </div>
+    </div>
+    <div id="welcome">
+        <div class="container">
+            <div class="title">
+                <h2>Save time, save money, rent now!</h2>
+                <span class="byline">Pick up your bookings from our shops</span>
+            </div>
+            <p></p>
+            <ul class="actions">
+                <li>@Html.ActionLink("CHECK OUT OUR SHOPS", "ShopUI", "Shop",null, new { @class = "btn btn-info", @role = "button", @style="color: white" })</li>
+            </ul>
+        </div>
+    </div>
+
     <div id="page">
         <div class="container">
             @RenderSection("featured", required: false)
@@ -77,11 +127,12 @@
         </div>
 
     </div>
+    
 
 
-    <div id="copyright" class="container">
+<div id="copyright" class="container">
         <p>&copy; @DateTime.Now.Year -My ASP.NET MVC Application</p>
-    </div>
+</div>
     @Scripts.Render("1/bundles/jquery")
     @RenderSection("scripts", required: false)
 

@@ -5,28 +5,32 @@
     {
     @Html.AntiForgeryToken()
 
+    <div id="menu">
+
     <ul class="nav navbar-nav navbar-right">
         <li>
             @Html.ActionLink("Hello " + User.Identity.GetUserName() + "!", "Index", "Manage", routeValues: null, htmlAttributes: new { title = "Manage" })
         </li>
         <li><a href="javascript:document.getElementById('logoutForm').submit()">Log off</a></li>
     </ul>
+        </div>
     }
 }
 else
 {
-<ul class="nav navbar-nav navbar-">
+<div id="menu">
+    <ul>
  
     <li>@Html.ActionLink("Register", "Register", "Account", routeValues: null, htmlAttributes: new { id = "registerLink" })</li>
     <li>@Html.ActionLink("Log in", "Login", "Account", routeValues: null, htmlAttributes: new { id = "loginLink" })</li>
-</ul>
+        </ul>
+</div>
 }
 
 <style>
     body {
-        padding-top: 80px;
+        padding-top: 0px;
         padding-bottom: 40px;
-        padding-right: 40px;
         background-image: url('../../Content/Image/ski-slopes-meribel-france-conde-nast-traveller-20oct17-getty_200502514-001.jpg');
         background-size: cover;
         background-position: center center;
