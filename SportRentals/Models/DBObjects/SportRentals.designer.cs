@@ -48,6 +48,9 @@ namespace SportRentals.Models.DBObjects
     partial void InsertProduct(Product instance);
     partial void UpdateProduct(Product instance);
     partial void DeleteProduct(Product instance);
+    partial void InsertAspNetUser(AspNetUser instance);
+    partial void UpdateAspNetUser(AspNetUser instance);
+    partial void DeleteAspNetUser(AspNetUser instance);
     partial void InsertCustomer(Customer instance);
     partial void UpdateCustomer(Customer instance);
     partial void DeleteCustomer(Customer instance);
@@ -147,6 +150,14 @@ namespace SportRentals.Models.DBObjects
 			}
 		}
 		
+		public System.Data.Linq.Table<AspNetUser> AspNetUsers
+		{
+			get
+			{
+				return this.GetTable<AspNetUser>();
+			}
+		}
+		
 		public System.Data.Linq.Table<Customer> Customers
 		{
 			get
@@ -178,8 +189,6 @@ namespace SportRentals.Models.DBObjects
 		
 		private EntitySet<Shop> _Shops;
 		
-		private EntitySet<Customer> _Customers;
-		
     #region Extensibility Method Definitions
     partial void OnLoaded();
     partial void OnValidate(System.Data.Linq.ChangeAction action);
@@ -203,7 +212,6 @@ namespace SportRentals.Models.DBObjects
 		public Address()
 		{
 			this._Shops = new EntitySet<Shop>(new Action<Shop>(this.attach_Shops), new Action<Shop>(this.detach_Shops));
-			this._Customers = new EntitySet<Customer>(new Action<Customer>(this.attach_Customers), new Action<Customer>(this.detach_Customers));
 			OnCreated();
 		}
 		
@@ -360,19 +368,6 @@ namespace SportRentals.Models.DBObjects
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Address_Customer", Storage="_Customers", ThisKey="AddressID", OtherKey="AddressID")]
-		public EntitySet<Customer> Customers
-		{
-			get
-			{
-				return this._Customers;
-			}
-			set
-			{
-				this._Customers.Assign(value);
-			}
-		}
-		
 		public event PropertyChangingEventHandler PropertyChanging;
 		
 		public event PropertyChangedEventHandler PropertyChanged;
@@ -400,18 +395,6 @@ namespace SportRentals.Models.DBObjects
 		}
 		
 		private void detach_Shops(Shop entity)
-		{
-			this.SendPropertyChanging();
-			entity.Address = null;
-		}
-		
-		private void attach_Customers(Customer entity)
-		{
-			this.SendPropertyChanging();
-			entity.Address = this;
-		}
-		
-		private void detach_Customers(Customer entity)
 		{
 			this.SendPropertyChanging();
 			entity.Address = null;
@@ -1635,6 +1618,360 @@ namespace SportRentals.Models.DBObjects
 		}
 	}
 	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.AspNetUsers")]
+	public partial class AspNetUser : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private string _Id;
+		
+		private string _Email;
+		
+		private bool _EmailConfirmed;
+		
+		private string _PasswordHash;
+		
+		private string _SecurityStamp;
+		
+		private string _PhoneNumber;
+		
+		private bool _PhoneNumberConfirmed;
+		
+		private bool _TwoFactorEnabled;
+		
+		private System.Nullable<System.DateTime> _LockoutEndDateUtc;
+		
+		private bool _LockoutEnabled;
+		
+		private int _AccessFailedCount;
+		
+		private string _UserName;
+		
+		private EntitySet<Customer> _Customers;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnIdChanging(string value);
+    partial void OnIdChanged();
+    partial void OnEmailChanging(string value);
+    partial void OnEmailChanged();
+    partial void OnEmailConfirmedChanging(bool value);
+    partial void OnEmailConfirmedChanged();
+    partial void OnPasswordHashChanging(string value);
+    partial void OnPasswordHashChanged();
+    partial void OnSecurityStampChanging(string value);
+    partial void OnSecurityStampChanged();
+    partial void OnPhoneNumberChanging(string value);
+    partial void OnPhoneNumberChanged();
+    partial void OnPhoneNumberConfirmedChanging(bool value);
+    partial void OnPhoneNumberConfirmedChanged();
+    partial void OnTwoFactorEnabledChanging(bool value);
+    partial void OnTwoFactorEnabledChanged();
+    partial void OnLockoutEndDateUtcChanging(System.Nullable<System.DateTime> value);
+    partial void OnLockoutEndDateUtcChanged();
+    partial void OnLockoutEnabledChanging(bool value);
+    partial void OnLockoutEnabledChanged();
+    partial void OnAccessFailedCountChanging(int value);
+    partial void OnAccessFailedCountChanged();
+    partial void OnUserNameChanging(string value);
+    partial void OnUserNameChanged();
+    #endregion
+		
+		public AspNetUser()
+		{
+			this._Customers = new EntitySet<Customer>(new Action<Customer>(this.attach_Customers), new Action<Customer>(this.detach_Customers));
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Id", DbType="NVarChar(128) NOT NULL", CanBeNull=false, IsPrimaryKey=true)]
+		public string Id
+		{
+			get
+			{
+				return this._Id;
+			}
+			set
+			{
+				if ((this._Id != value))
+				{
+					this.OnIdChanging(value);
+					this.SendPropertyChanging();
+					this._Id = value;
+					this.SendPropertyChanged("Id");
+					this.OnIdChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Email", DbType="NVarChar(256)")]
+		public string Email
+		{
+			get
+			{
+				return this._Email;
+			}
+			set
+			{
+				if ((this._Email != value))
+				{
+					this.OnEmailChanging(value);
+					this.SendPropertyChanging();
+					this._Email = value;
+					this.SendPropertyChanged("Email");
+					this.OnEmailChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_EmailConfirmed", DbType="Bit NOT NULL")]
+		public bool EmailConfirmed
+		{
+			get
+			{
+				return this._EmailConfirmed;
+			}
+			set
+			{
+				if ((this._EmailConfirmed != value))
+				{
+					this.OnEmailConfirmedChanging(value);
+					this.SendPropertyChanging();
+					this._EmailConfirmed = value;
+					this.SendPropertyChanged("EmailConfirmed");
+					this.OnEmailConfirmedChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_PasswordHash", DbType="NVarChar(MAX)")]
+		public string PasswordHash
+		{
+			get
+			{
+				return this._PasswordHash;
+			}
+			set
+			{
+				if ((this._PasswordHash != value))
+				{
+					this.OnPasswordHashChanging(value);
+					this.SendPropertyChanging();
+					this._PasswordHash = value;
+					this.SendPropertyChanged("PasswordHash");
+					this.OnPasswordHashChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SecurityStamp", DbType="NVarChar(MAX)")]
+		public string SecurityStamp
+		{
+			get
+			{
+				return this._SecurityStamp;
+			}
+			set
+			{
+				if ((this._SecurityStamp != value))
+				{
+					this.OnSecurityStampChanging(value);
+					this.SendPropertyChanging();
+					this._SecurityStamp = value;
+					this.SendPropertyChanged("SecurityStamp");
+					this.OnSecurityStampChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_PhoneNumber", DbType="NVarChar(MAX)")]
+		public string PhoneNumber
+		{
+			get
+			{
+				return this._PhoneNumber;
+			}
+			set
+			{
+				if ((this._PhoneNumber != value))
+				{
+					this.OnPhoneNumberChanging(value);
+					this.SendPropertyChanging();
+					this._PhoneNumber = value;
+					this.SendPropertyChanged("PhoneNumber");
+					this.OnPhoneNumberChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_PhoneNumberConfirmed", DbType="Bit NOT NULL")]
+		public bool PhoneNumberConfirmed
+		{
+			get
+			{
+				return this._PhoneNumberConfirmed;
+			}
+			set
+			{
+				if ((this._PhoneNumberConfirmed != value))
+				{
+					this.OnPhoneNumberConfirmedChanging(value);
+					this.SendPropertyChanging();
+					this._PhoneNumberConfirmed = value;
+					this.SendPropertyChanged("PhoneNumberConfirmed");
+					this.OnPhoneNumberConfirmedChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TwoFactorEnabled", DbType="Bit NOT NULL")]
+		public bool TwoFactorEnabled
+		{
+			get
+			{
+				return this._TwoFactorEnabled;
+			}
+			set
+			{
+				if ((this._TwoFactorEnabled != value))
+				{
+					this.OnTwoFactorEnabledChanging(value);
+					this.SendPropertyChanging();
+					this._TwoFactorEnabled = value;
+					this.SendPropertyChanged("TwoFactorEnabled");
+					this.OnTwoFactorEnabledChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_LockoutEndDateUtc", DbType="DateTime")]
+		public System.Nullable<System.DateTime> LockoutEndDateUtc
+		{
+			get
+			{
+				return this._LockoutEndDateUtc;
+			}
+			set
+			{
+				if ((this._LockoutEndDateUtc != value))
+				{
+					this.OnLockoutEndDateUtcChanging(value);
+					this.SendPropertyChanging();
+					this._LockoutEndDateUtc = value;
+					this.SendPropertyChanged("LockoutEndDateUtc");
+					this.OnLockoutEndDateUtcChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_LockoutEnabled", DbType="Bit NOT NULL")]
+		public bool LockoutEnabled
+		{
+			get
+			{
+				return this._LockoutEnabled;
+			}
+			set
+			{
+				if ((this._LockoutEnabled != value))
+				{
+					this.OnLockoutEnabledChanging(value);
+					this.SendPropertyChanging();
+					this._LockoutEnabled = value;
+					this.SendPropertyChanged("LockoutEnabled");
+					this.OnLockoutEnabledChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_AccessFailedCount", DbType="Int NOT NULL")]
+		public int AccessFailedCount
+		{
+			get
+			{
+				return this._AccessFailedCount;
+			}
+			set
+			{
+				if ((this._AccessFailedCount != value))
+				{
+					this.OnAccessFailedCountChanging(value);
+					this.SendPropertyChanging();
+					this._AccessFailedCount = value;
+					this.SendPropertyChanged("AccessFailedCount");
+					this.OnAccessFailedCountChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_UserName", DbType="NVarChar(256) NOT NULL", CanBeNull=false)]
+		public string UserName
+		{
+			get
+			{
+				return this._UserName;
+			}
+			set
+			{
+				if ((this._UserName != value))
+				{
+					this.OnUserNameChanging(value);
+					this.SendPropertyChanging();
+					this._UserName = value;
+					this.SendPropertyChanged("UserName");
+					this.OnUserNameChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="AspNetUser_Customer", Storage="_Customers", ThisKey="Id", OtherKey="UserID")]
+		public EntitySet<Customer> Customers
+		{
+			get
+			{
+				return this._Customers;
+			}
+			set
+			{
+				this._Customers.Assign(value);
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+		
+		private void attach_Customers(Customer entity)
+		{
+			this.SendPropertyChanging();
+			entity.AspNetUser = this;
+		}
+		
+		private void detach_Customers(Customer entity)
+		{
+			this.SendPropertyChanging();
+			entity.AspNetUser = null;
+		}
+	}
+	
 	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Customers")]
 	public partial class Customer : INotifyPropertyChanging, INotifyPropertyChanged
 	{
@@ -1642,8 +1979,6 @@ namespace SportRentals.Models.DBObjects
 		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
 		
 		private int _CustomerID;
-		
-		private System.Nullable<int> _AddressID;
 		
 		private string _FirstName;
 		
@@ -1653,9 +1988,11 @@ namespace SportRentals.Models.DBObjects
 		
 		private string _Email;
 		
+		private string _UserID;
+		
 		private EntitySet<Order> _Orders;
 		
-		private EntityRef<Address> _Address;
+		private EntityRef<AspNetUser> _AspNetUser;
 		
     #region Extensibility Method Definitions
     partial void OnLoaded();
@@ -1663,8 +2000,6 @@ namespace SportRentals.Models.DBObjects
     partial void OnCreated();
     partial void OnCustomerIDChanging(int value);
     partial void OnCustomerIDChanged();
-    partial void OnAddressIDChanging(System.Nullable<int> value);
-    partial void OnAddressIDChanged();
     partial void OnFirstNameChanging(string value);
     partial void OnFirstNameChanged();
     partial void OnLastNameChanging(string value);
@@ -1673,12 +2008,14 @@ namespace SportRentals.Models.DBObjects
     partial void OnPhoneChanged();
     partial void OnEmailChanging(string value);
     partial void OnEmailChanged();
+    partial void OnUserIDChanging(string value);
+    partial void OnUserIDChanged();
     #endregion
 		
 		public Customer()
 		{
 			this._Orders = new EntitySet<Order>(new Action<Order>(this.attach_Orders), new Action<Order>(this.detach_Orders));
-			this._Address = default(EntityRef<Address>);
+			this._AspNetUser = default(EntityRef<AspNetUser>);
 			OnCreated();
 		}
 		
@@ -1698,30 +2035,6 @@ namespace SportRentals.Models.DBObjects
 					this._CustomerID = value;
 					this.SendPropertyChanged("CustomerID");
 					this.OnCustomerIDChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_AddressID", DbType="Int")]
-		public System.Nullable<int> AddressID
-		{
-			get
-			{
-				return this._AddressID;
-			}
-			set
-			{
-				if ((this._AddressID != value))
-				{
-					if (this._Address.HasLoadedOrAssignedValue)
-					{
-						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-					}
-					this.OnAddressIDChanging(value);
-					this.SendPropertyChanging();
-					this._AddressID = value;
-					this.SendPropertyChanged("AddressID");
-					this.OnAddressIDChanged();
 				}
 			}
 		}
@@ -1806,6 +2119,30 @@ namespace SportRentals.Models.DBObjects
 			}
 		}
 		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_UserID", DbType="NVarChar(128)")]
+		public string UserID
+		{
+			get
+			{
+				return this._UserID;
+			}
+			set
+			{
+				if ((this._UserID != value))
+				{
+					if (this._AspNetUser.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnUserIDChanging(value);
+					this.SendPropertyChanging();
+					this._UserID = value;
+					this.SendPropertyChanged("UserID");
+					this.OnUserIDChanged();
+				}
+			}
+		}
+		
 		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Customer_Order", Storage="_Orders", ThisKey="CustomerID", OtherKey="CustomerID")]
 		public EntitySet<Order> Orders
 		{
@@ -1819,36 +2156,36 @@ namespace SportRentals.Models.DBObjects
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Address_Customer", Storage="_Address", ThisKey="AddressID", OtherKey="AddressID", IsForeignKey=true)]
-		public Address Address
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="AspNetUser_Customer", Storage="_AspNetUser", ThisKey="UserID", OtherKey="Id", IsForeignKey=true)]
+		public AspNetUser AspNetUser
 		{
 			get
 			{
-				return this._Address.Entity;
+				return this._AspNetUser.Entity;
 			}
 			set
 			{
-				Address previousValue = this._Address.Entity;
+				AspNetUser previousValue = this._AspNetUser.Entity;
 				if (((previousValue != value) 
-							|| (this._Address.HasLoadedOrAssignedValue == false)))
+							|| (this._AspNetUser.HasLoadedOrAssignedValue == false)))
 				{
 					this.SendPropertyChanging();
 					if ((previousValue != null))
 					{
-						this._Address.Entity = null;
+						this._AspNetUser.Entity = null;
 						previousValue.Customers.Remove(this);
 					}
-					this._Address.Entity = value;
+					this._AspNetUser.Entity = value;
 					if ((value != null))
 					{
 						value.Customers.Add(this);
-						this._AddressID = value.AddressID;
+						this._UserID = value.Id;
 					}
 					else
 					{
-						this._AddressID = default(Nullable<int>);
+						this._UserID = default(string);
 					}
-					this.SendPropertyChanged("Address");
+					this.SendPropertyChanged("AspNetUser");
 				}
 			}
 		}

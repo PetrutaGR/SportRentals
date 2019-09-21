@@ -183,6 +183,7 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\AddressController.cs" />
+    <Compile Include="Controllers\CategoryController.cs" />
     <Compile Include="Controllers\CustomerController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\InvoicingController.cs" />
@@ -199,6 +200,9 @@
     <Compile Include="Models\AddressModel.cs" />
     <Compile Include="Models\CategoryModel.cs" />
     <Compile Include="Models\CustomerModel.cs" />
+    <Compile Include="Models\DBObjects\SportRentals.cs">
+      <DependentUpon>SportRentals.dbml</DependentUpon>
+    </Compile>
     <Compile Include="Models\DBObjects\SportRentals.designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -222,6 +226,7 @@
     <Compile Include="Repository\ProductRepository.cs" />
     <Compile Include="Repository\ShopPaymentMethodsRepository.cs" />
     <Compile Include="Repository\ShopRepository.cs" />
+    <Compile Include="Repository\UserRepository.cs" />
     <Compile Include="Startup.cs" />
     <Compile Include="ViewModels\OrderProductsViewModel.cs" />
     <Compile Include="ViewModels\ProductCategoryViewModel.cs" />
@@ -240,6 +245,7 @@
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\header_g_winterabseits.jpg" />
+    <Content Include="Content\Image\header_g_winterabseits.jpg" />
     <Content Include="Content\Image\logo.png" />
     <Content Include="Content\templated-assembly\default.css" />
     <Content Include="Content\templated-assembly\fonts.css" />
@@ -277,6 +283,7 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
     <Content Include="Views\Home\ReadMore.cshtml" />
+    <Content Include="Views\Category\Index.cshtml" />
     <None Include="Views\Shared\_assemblylayout.cshtml" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">

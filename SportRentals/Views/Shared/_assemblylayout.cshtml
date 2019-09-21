@@ -37,10 +37,9 @@
             <ul>
                 @{ if (User.IsInRole("User"))
                     {
-                        @*<li><strong>@Html.ActionLink("Book a product", "Index", "ProductUser")</strong></li>*@
-                        @*<li><strong>@Html.ActionLink("ProductDetails", "ProductDetails", "Product")</strong></li>*@
-                        @*<li><strong>@Html.ActionLink("About", "About", "Home")</strong></li>
-                        <li><strong>@Html.ActionLink("Contact", "Contact", "Home")</strong></li>*@
+                        <li><strong>@Html.ActionLink("Book a product", "Index", "ProductUser")</strong></li>
+                      
+                       
                     }
 
                 }
@@ -56,14 +55,6 @@
                         <li><strong>@Html.ActionLink("Products", "Index", "Product")</strong></li>
                     }
                 }
-                @*<li class="active">@Html.ActionLink("Home", "Index", "Home")</li>
-        <li>@Html.ActionLink("About", "About", "Home")</li>
-        <li>@Html.ActionLink("Contact", "Contact", "Home")</li>*@
-                @*<li class="active"><a href="#" accesskey="1" title="">Homepage</a></li>
-        <li><a href="#" accesskey="2" title="">Our Clients</a></li>
-        <li><a href="#" accesskey="3" title="">About Us</a></li>
-        <li><a href="#" accesskey="4" title="">Careers</a></li>
-        <li><a href="#" accesskey="5" title="">Contact Us</a></li>*@
             </ul>
         </div>
     </div>

@@ -87,7 +87,7 @@ namespace SportRentals.Controllers
             {
                 Models.ProductModel productModel = new Models.ProductModel();
 
-                UpdateModel(productRepository);
+                UpdateModel(productModel);
 
                 productRepository.UpdateProduct(productModel);
 

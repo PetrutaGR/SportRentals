@@ -38,7 +38,7 @@ namespace SportRentals.Controllers
                 {
                     var senderEmail = new MailAddress("gbrlpetruta@gmail.com", "Gabriela");
                     var receiverEmail = new MailAddress(receiver, "gabrielarotar26@gmail.com");
-                    var password = "Proiect.2019";
+                    var password = "Proiect.2019!";
                     var sub = subject;
                     var body = message;
                     var smtp = new SmtpClient
@@ -61,7 +61,7 @@ namespace SportRentals.Controllers
                     return View();
                 }
             }
-            catch (Exception ex)
+            catch (Exception )
             {
                 ViewBag.Error = "Some Error";
             }

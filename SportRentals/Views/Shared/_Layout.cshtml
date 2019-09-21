@@ -32,11 +32,11 @@
 
                     @{ if (User.IsInRole("User"))
                         {
-                            <li>@Html.ActionLink("Book a product", "Index", "ProductUser")</li>
-                            <li>@Html.ActionLink("ProductDetails", "ProductDetails", "Product")</li>
-                            <li>@Html.ActionLink("About", "About", "Home")</li>
-                            <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
-                            <li>@Html.ActionLink("Shops", "Index", "Shop")</li>
+                            @*<li>@Html.ActionLink("Book a product", "Index", "ProductUser")</li>
+                <li>@Html.ActionLink("ProductDetails", "ProductDetails", "Product")</li>*@
+                            @*<li>@Html.ActionLink("About", "About", "Home")</li>
+                <li>@Html.ActionLink("Contact", "Contact", "Home")</li>*@
+
 
 
                         }
@@ -51,9 +51,11 @@
                             <li>@Html.ActionLink("Customers", "Index", "Customer")</li>
                             <li>@Html.ActionLink("Shops", "Index", "Shop")</li>
                             <li>@Html.ActionLink("Orders", "Index", "Order")</li>
+                            <li>@Html.ActionLink("Product Categories", "Index", "Category")</li>
 
                             <li>@Html.ActionLink("Invoicing", "Index", "Invoicing")</li>
                             <li>@Html.ActionLink("Products", "Index", "Product")</li>
+                            <li>@Html.ActionLink("Payment Methods", "Index", "PaymentMethod")</li>
 
 
                         }

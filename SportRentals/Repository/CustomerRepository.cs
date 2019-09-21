@@ -1,4 +1,5 @@
 ﻿using SportRentals.Models;
+using SportRentals.Models.DBObjects;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -31,7 +32,6 @@ namespace SportRentals.Repository
             if(dbCustomer != null)
             {
                 customerModel.CustomerID = dbCustomer.CustomerID;
-                customerModel.AddressID = dbCustomer.AddressID;
                 customerModel.FirstName = dbCustomer.FirstName;
                 customerModel.LastName = dbCustomer.LastName;
                 customerModel.Phone = dbCustomer.Phone;
@@ -51,7 +51,6 @@ namespace SportRentals.Repository
             if(customerModel != null)
             {
                 dbCustomerModel.CustomerID = customerModel.CustomerID;
-                dbCustomerModel.AddressID = customerModel.AddressID;
                 dbCustomerModel.FirstName = customerModel.FirstName;
                 dbCustomerModel.LastName = customerModel.LastName;
                 dbCustomerModel.Phone = customerModel.Phone;
@@ -84,13 +83,13 @@ namespace SportRentals.Repository
 
         }
 
+       
         public void UpdateCustomer(CustomerModel customerModel)
         {
             Models.DBObjects.Customer existingCustomer = dbContext.Customers.FirstOrDefault(x => x.CustomerID == customerModel.CustomerID);
             if(existingCustomer != null)
             {
                 existingCustomer.CustomerID = customerModel.CustomerID;
-                existingCustomer.AddressID = customerModel.AddressID;
                 existingCustomer.FirstName = customerModel.FirstName;
                 existingCustomer.LastName = customerModel.LastName;
                 existingCustomer.Phone = customerModel.Phone;

@@ -1,4 +1,4 @@
-﻿@model IEnumerable<SportRentals.Models.PaymentMethodModel>
+﻿@model IEnumerable<SportRentals.Models.CategoryModel>
 
 @{
     ViewBag.Title = "Index";
@@ -8,12 +8,12 @@
 <h2>Index</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create",null, new {@class="btn btn-primary"})
+    @Html.ActionLink("Create New", "Create",null,new { @class = "btn btn-primary" })
 </p>
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.PaymentMethodID)
+            @Html.DisplayNameFor(model => model.CategoryID)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.Name)
@@ -27,7 +27,7 @@
 @foreach (var item in Model) {
     <tr>
         <td>
-            @Html.DisplayFor(modelItem => item.PaymentMethodID)
+            @Html.DisplayFor(modelItem => item.CategoryID)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.Name)
@@ -36,9 +36,9 @@
             @Html.DisplayFor(modelItem => item.Description)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.PaymentMethodID }, new { @class = "btn btn-primary" }) 
-            @Html.ActionLink("Details", "Details", new {  id=item.PaymentMethodID },new { @class = "btn btn-primary" }) 
-            @Html.ActionLink("Delete", "Delete", new { id=item.PaymentMethodID },new { @class = "btn btn-warning" })
+            @Html.ActionLink("Edit", "Edit", new { id=item.CategoryID },new { @class = "btn btn-primary" }) 
+            @Html.ActionLink("Details", "Details", new { id=item.CategoryID},new { @class = "btn btn-primary" }) 
+            @Html.ActionLink("Delete", "Delete", new { id=item.CategoryID },new { @class = "btn btn-warning" })
         </td>
     </tr>
 }
