@@ -173,6 +173,28 @@ namespace SportRentals.Repository
             }
         }
 
+        public List<ProductModel> GetAllProductsByCategoryID(int ID)
+        {
+            List<ProductModel> productList = new List<ProductModel>();
+            List<Product> product = dbContext.Products.Where(x => x.CategoryID == ID).ToList();
+            foreach(Models.DBObjects.Product dbProduct in product)
+            {
+                ProductModel productModel = new ProductModel();
+
+                productModel.ProductID = dbProduct.ProductID;
+                productModel.CategoryID = dbProduct.CategoryID;
+                productModel.Name = dbProduct.Name;
+                productModel.Description = dbProduct.Description;
+                productModel.DailyPrice = dbProduct.DailyPrice;
+                productModel.Stock = dbProduct.Stock;
+                productModel.ImageUrl = dbProduct.ImageUrl;
+
+                productList.Add(productModel);
+            }
+
+            return productList;
+        }
+
 
 
 

@@ -1,4 +1,5 @@
-﻿using SportRentals.Repository;
+﻿using SportRentals.Models;
+using SportRentals.Repository;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,6 +12,9 @@ namespace SportRentals.Controllers
     {
 
         private CategoryRepository categoryRepository = new CategoryRepository();
+        private ProductRepository productRepository = new ProductRepository();
+
+
         // GET: Category
         public ActionResult Index()
         {
@@ -27,7 +31,7 @@ namespace SportRentals.Controllers
         // GET: Category/Create
         public ActionResult Create()
         {
-            return View();
+            return View("CreateCategory");
         }
 
         // POST: Category/Create
@@ -36,13 +40,15 @@ namespace SportRentals.Controllers
         {
             try
             {
-                // TODO: Add insert logic here
+                CategoryModel categoryModel = new CategoryModel();
+                UpdateModel(categoryModel);
+                categoryRepository.InsertCategory(categoryModel);
 
                 return RedirectToAction("Index");
             }
             catch
             {
-                return View();
+                return View("CreateCategory");
             }
         }
 
@@ -69,24 +75,31 @@ namespace SportRentals.Controllers
         }
 
         // GET: Category/Delete/5
-        public ActionResult Delete(int id)
+        public ActionResult Delete(int ID)
         {
-            return View();
+            CategoryModel categoryModel = categoryRepository.GetCategoryByID(ID);
+
+            return View("Delete", categoryModel);
         }
 
         // POST: Category/Delete/5
         [HttpPost]
-        public ActionResult Delete(int id, FormCollection collection)
+        public ActionResult Delete(int ID, FormCollection collection)
         {
             try
             {
-                // TODO: Add delete logic here
+                List<ProductModel> products = productRepository.GetAllProductsByCategoryID(ID);
+                foreach(ProductModel product in products)
+                {
+                    productRepository.DeleteProduct(product.ProductID);
+                }
 
+                categoryRepository.DeleteCategory(ID);
                 return RedirectToAction("Index");
             }
             catch
             {
-                return View();
+                return View("Delete");
             }
         }
     }

@@ -63,5 +63,21 @@ namespace SportRentals.Repository
         {
             return MapDbObjectToModel(dbContext.Categories.FirstOrDefault(x => x.CategoryID == ID));
         }
+
+        public void DeleteCategory (int ID)
+        {
+            Models.DBObjects.Category categoryToDelete = dbContext.Categories.FirstOrDefault(x => x.CategoryID == ID);
+            if(categoryToDelete !=null)
+            {
+                dbContext.Categories.DeleteOnSubmit(categoryToDelete);
+                dbContext.SubmitChanges();
+            }
+        }
+
+        public void InsertCategory(CategoryModel categoryModel)
+        {
+            dbContext.Categories.InsertOnSubmit(MapModelToDbObject(categoryModel));
+            dbContext.SubmitChanges(0);
+        }
     }
 }

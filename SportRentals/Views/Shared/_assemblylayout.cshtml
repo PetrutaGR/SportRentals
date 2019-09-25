@@ -28,22 +28,20 @@
                SkiRentals
             </p>
 
-
         </div>
-
-
         <div id="menu">
 
             <ul>
                 @{ if (User.IsInRole("User"))
                     {
-                        <li><strong>@Html.ActionLink("Book a product", "Index", "ProductUser")</strong></li>
-                      
-                       
+                        @*<li><strong>@Html.ActionLink("Book a product", "Index", "ProductUser")</strong></li>*@
+                        @*<li>@Html.ActionLink("ProductDetails", "ProductDetails", "Product")</li>*@
+                        <li>@Html.ActionLink("Products", "Index", "ProductUser")</li>
+
                     }
 
                 }
-              
+
                 @{ if (User.IsInRole("Admin"))
                     {
 
@@ -83,13 +81,15 @@
             <div class="boxA">
                 <p>Snowboards</p>
                 <img style="height: 200px; width: 100%; display: block;" src="https://image.flaticon.com/icons/svg/38/38491.svg" />
-                <a href="#" class="button button-alt">Reserve Now</a>
+                @Html.ActionLink("Reserve Now", "ProductDetails", "Product", null, new { @class = "btn btn-primary btn-large" })
+
             </div>
             <div class="boxB">
                 <p>Ski Packages</p>
-                <img style="height: 200px; width: 100%; display: block;" src="https://image.flaticon.com/icons/svg/8/8122.svg"/>
-                <a href="#" class="button button-alt">Reserve Now</a>
+                <img style="height: 200px; width: 100%; display: block;" src="https://image.flaticon.com/icons/svg/8/8122.svg" />
+                   <a href="#" class="button button-alt">Reserve Now</a>
             </div>
+               
             <div class="boxC">
                 <p>Ski Clothes</p>
                 <img style="height: 200px; width: 100%; display: block;" src="https://image.flaticon.com/icons/svg/2093/2093841.svg"/>

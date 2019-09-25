@@ -110,17 +110,17 @@ namespace SportRentals.Controllers
 
         [Authorize(Roles = "Admin")]
         [HttpPost]
-        public ActionResult Delete(int id, FormCollection collection)
+        public ActionResult Delete(int ID, FormCollection collection)
         {
             try
             {
-                productRepository.DeleteProduct(id);
+                productRepository.DeleteProduct(ID);
 
                 return RedirectToAction("Index");
             }
             catch
             {
-                return View("DeleteProduct");
+                return View("Delete");
             }
         }
     }

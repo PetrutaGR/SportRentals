@@ -12,6 +12,8 @@ namespace SportRentals.Controllers
     {
 
         private AddressRepository addressRepository = new AddressRepository();
+        private ShopRepository shopRepository = new ShopRepository();
+
         // GET: Address
         public ActionResult Index()
         {
@@ -86,11 +88,18 @@ namespace SportRentals.Controllers
 
         // POST: Address/Delete/5
         [HttpPost]
-        public ActionResult Delete(int id, FormCollection collection)
+        public ActionResult Delete(int ID, FormCollection collection)
         {
             try
             {
-                addressRepository.DeleteAddress(id);
+                List<ShopModel> shops = shopRepository.GetAllShopsByAddressID(ID);
+                foreach(ShopModel shop in shops)
+                {
+                    shopRepository.DeleteShop(shop.ShopId);
+                }
+
+                addressRepository.DeleteAddress(ID);
+              
 
                 return RedirectToAction("Index");
             }
