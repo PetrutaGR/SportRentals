@@ -33,6 +33,7 @@ namespace SportRentals.Repository
                 orderModel.StartDate = dbOrder.StartDate;
                 orderModel.EndDate = dbOrder.EndDate;
                 orderModel.CreatedDateTime = dbOrder.CreatedDateTime;
+                orderModel.Status = dbOrder.Status;
 
                 return orderModel;
                     
@@ -52,6 +53,7 @@ namespace SportRentals.Repository
                 dbOrderModel.StartDate = orderModel.StartDate;
                 dbOrderModel.EndDate = orderModel.EndDate;
                 dbOrderModel.CreatedDateTime = orderModel.CreatedDateTime;
+                dbOrderModel.Status = orderModel.Status;
 
                 return dbOrderModel;
 
@@ -130,6 +132,7 @@ namespace SportRentals.Repository
                 existingOrder.StartDate = orderModel.StartDate;
                 existingOrder.EndDate = orderModel.EndDate;
                 existingOrder.CreatedDateTime = orderModel.CreatedDateTime;
+                existingOrder.Status = orderModel.Status;
 
                 dbContext.SubmitChanges();
 
@@ -146,7 +149,47 @@ namespace SportRentals.Repository
             }
         }
 
-        
+        public List<OrderModel> GetAllOrdersByShopID(int ID)
+        {
+            List<OrderModel> ordersList = new List<OrderModel>();
+            List<Order> order = dbContext.Orders.Where(x => x.ShopID == ID).ToList();
+            foreach(Models.DBObjects.Order dbOrder in order)
+            {
+                OrderModel orderModel = new OrderModel();
+                orderModel.OrderID = dbOrder.OrderID;
+                orderModel.CustomerID = dbOrder.CustomerID;
+                orderModel.ShopID = dbOrder.ShopID;
+                orderModel.StartDate = dbOrder.StartDate;
+                orderModel.EndDate = dbOrder.EndDate;
+                orderModel.Total = dbOrder.Total;
+                orderModel.CreatedDateTime = dbOrder.CreatedDateTime;
+                orderModel.Status = dbOrder.Status;
+
+                ordersList.Add(orderModel);
+            }
+            return ordersList;
+        }
+
+        public List<OrderModel> GetAllOrdersByCustomerID(int ID)
+        {
+            List<OrderModel> ordersList = new List<OrderModel>();
+            List<Order> order = dbContext.Orders.Where(x => x.CustomerID == ID).ToList();
+            foreach (Models.DBObjects.Order dbOrder in order)
+            {
+                OrderModel orderModel = new OrderModel();
+                orderModel.OrderID = dbOrder.OrderID;
+                orderModel.CustomerID = dbOrder.CustomerID;
+                orderModel.ShopID = dbOrder.ShopID;
+                orderModel.StartDate = dbOrder.StartDate;
+                orderModel.EndDate = dbOrder.EndDate;
+                orderModel.Total = dbOrder.Total;
+                orderModel.CreatedDateTime = dbOrder.CreatedDateTime;
+                orderModel.Status = dbOrder.Status;
+
+                ordersList.Add(orderModel);
+            }
+            return ordersList;
+        }
 
 
     }

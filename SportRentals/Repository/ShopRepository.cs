@@ -170,7 +170,7 @@ namespace SportRentals.Repository
             return shopViewModel;
         }
 
-        public List<ShopModel> GetAllShopsByAddressID(int ID)
+        public List<ShopModel> GetAllShopsByCategoryID(int ID)
         {
             List<ShopModel> shopsList = new List<ShopModel>();
             List<Shop> shop = dbContext.Shops.Where(x => x.CategoryID == ID).ToList();
@@ -188,6 +188,26 @@ namespace SportRentals.Repository
 
             return shopsList;
         }
+
+        public List<ShopModel> GetAllShopsByAddressID(int ID)
+        {
+            List<ShopModel> shopsList = new List<ShopModel>();
+            List<Shop> shop = dbContext.Shops.Where(x => x.AddressID == ID).ToList();
+            foreach (Models.DBObjects.Shop dbShop in shop)
+            {
+                ShopModel shopModel = new ShopModel();
+                shopModel.ShopId = dbShop.ShopId;
+                shopModel.AddressID = dbShop.AddressID;
+                shopModel.Name = dbShop.Name;
+                shopModel.Email = dbShop.Email;
+                shopModel.CategoryID = dbShop.CategoryID;
+
+                shopsList.Add(shopModel);
+            }
+
+            return shopsList;
+        }
+
 
 
 

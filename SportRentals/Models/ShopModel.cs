@@ -28,7 +28,7 @@ namespace SportRentals.Models
 
         public int CategoryID { get; set; }
 
-        [Required(ErrorMessage = "Mandatory field")]
+       
         public string CategoryName { get; set; }
 
 

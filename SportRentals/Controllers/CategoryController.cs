@@ -13,6 +13,7 @@ namespace SportRentals.Controllers
 
         private CategoryRepository categoryRepository = new CategoryRepository();
         private ProductRepository productRepository = new ProductRepository();
+        private ShopRepository shopRepository = new ShopRepository();
 
 
         // GET: Category
@@ -94,7 +95,14 @@ namespace SportRentals.Controllers
                     productRepository.DeleteProduct(product.ProductID);
                 }
 
+                List<ShopModel> shops = shopRepository.GetAllShopsByCategoryID(ID);
+                foreach (ShopModel shop in shops)
+                {
+                    shopRepository.DeleteShop(ID);
+                }
+
                 categoryRepository.DeleteCategory(ID);
+             
                 return RedirectToAction("Index");
             }
             catch

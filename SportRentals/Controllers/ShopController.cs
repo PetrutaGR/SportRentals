@@ -14,6 +14,8 @@ namespace SportRentals.Controllers
 
         private ShopRepository shopRepository = new ShopRepository();
         private CategoryRepository categoryRepository = new CategoryRepository();
+        private OrderRepository orderRepository = new OrderRepository();
+
         // GET: Shop
         [Authorize(Roles = "Admin")]
         public ActionResult Index()
@@ -73,14 +75,15 @@ namespace SportRentals.Controllers
             try
             {
                 ShopModel shopModel = new ShopModel();
-                UpdateModel(shopModel);
+                TryUpdateModel(shopModel);
                 shopRepository.InsertShop(shopModel);
 
                 return RedirectToAction("Index");
             }
-            catch
+            catch(Exception ex)
             {
-                return View("CreateShop");
+                HandleErrorInfo error = new HandleErrorInfo(ex, "Shop", "Create");
+                return View("Error", error);
             }
         }
 
@@ -121,11 +124,16 @@ namespace SportRentals.Controllers
         // POST: Shop/Delete/5
         [Authorize(Roles = "Admin")]
         [HttpPost]
-        public ActionResult Delete(int id, FormCollection collection)
+        public ActionResult Delete(int ID, FormCollection collection)
         {
             try
             {
-                shopRepository.DeleteShop(id);
+                List<OrderModel> orders = orderRepository.GetAllOrdersByShopID(ID);
+                foreach(OrderModel order in orders)
+                {
+                    orderRepository.DeleteOrder(order.OrderID);
+                }
+                shopRepository.DeleteShop(ID);
 
                 return RedirectToAction("Index");
             }

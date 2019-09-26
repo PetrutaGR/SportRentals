@@ -12,6 +12,7 @@ namespace SportRentals.Controllers
     {
 
         private CustomerRepository customerRepository = new CustomerRepository();
+        private OrderRepository orderRepository = new OrderRepository();
 
         // GET: Customer
         public ActionResult Index()
@@ -92,12 +93,17 @@ namespace SportRentals.Controllers
 
         // POST: Customer/Delete/5
         [HttpPost]
-        public ActionResult Delete(int id, FormCollection collection)
+        public ActionResult Delete(int ID, FormCollection collection)
         {
             try
             {
-                customerRepository.DeleteCustomer(id);
+                List<OrderModel> orders = orderRepository.GetAllOrdersByCustomerID(ID);
+                foreach(OrderModel order in orders)
+                {
+                    orderRepository.DeleteOrder(order.OrderID);
+                }
 
+                customerRepository.DeleteCustomer(ID);
                 return RedirectToAction("Index");
             }
             catch

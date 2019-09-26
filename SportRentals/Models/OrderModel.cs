@@ -26,11 +26,13 @@ namespace SportRentals.Models
 
         [DisplayName("Total Amount")]
         [Range(1, 1000, ErrorMessage = "Price must be between $1 and $1000")]
-        public double Total { get; set;}
+        public decimal Total { get; set;}
 
 
         [DataType(DataType.DateTime, ErrorMessage = "Invalid Datetime")]
         [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}")]
         public DateTime CreatedDateTime { get; set; }
+
+        public string Status { get; set; }
     }
 }
