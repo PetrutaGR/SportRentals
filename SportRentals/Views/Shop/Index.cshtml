@@ -1,4 +1,4 @@
-﻿@model IEnumerable<SportRentals.Models.ShopModel>
+﻿@model IEnumerable<SportRentals.ViewModels.ShopViewModel>
 
 @{
     ViewBag.Title = "Index";
@@ -17,9 +17,6 @@
             @Html.DisplayNameFor(model => model.ShopId)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.AddressID)
-        </th>
-        <th>
             @Html.DisplayNameFor(model => model.Name)
         </th>
         <th>
@@ -29,39 +26,48 @@
             @Html.DisplayNameFor(model => model.Email)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.CategoryID)
+            @Html.DisplayNameFor(model => model.CategoryName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Address)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PaymentMethods)
         </th>
         <th></th>
     </tr>
 
 @foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.ShopId)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.AddressID)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Name)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Phone)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Email)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.CategoryID)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id = item.ShopId },new { @class = "btn btn-primary" }) 
-            @Html.ActionLink("Details", "Details", new { id = item.ShopId },new { @class = "btn btn-primary" }) 
-            @Html.ActionLink("Delete", "Delete", new { id = item.ShopId },new { @class = "btn btn-warning" })
-            @Html.ActionLink("ShopProducts", "ShopProducts", new { id = item.CategoryID },new { @class = "btn btn-primary" })
-            @Html.ActionLink("Name", "IndexwithName", new { id = item.ShopId },new { @class = "btn btn-primary" })
-        </td>
-    </tr>
+<tr>
+    <td>
+        @Html.DisplayFor(modelItem => item.ShopId)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Name)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Phone)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Email)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.CategoryName)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Address)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.PaymentMethods)
+    </td>
+    <td>
+        @Html.ActionLink("Edit", "Edit", new { id = item.ShopId }, new { @class = "btn btn-primary" })
+        @*@Html.ActionLink("Details", "Details", new { id = item.ShopId },new { @class = "btn btn-primary" })*@
+        @Html.ActionLink("Delete", "Delete", new { id = item.ShopId }, new { @class = "btn btn-warning" })
+        @Html.ActionLink("Products", "ShopProducts", new { id = item.CategoryId }, new { @class = "btn btn-primary" })
+        @*@Html.ActionLink("Available Payment Methods", "IndexwithName", new { id = item.ShopId }, new { @class = "btn btn-primary" })*@
+    </td>
+</tr>
 }
 
 </table>

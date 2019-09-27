@@ -159,12 +159,29 @@ namespace SportRentals.Controllers
                 UserRepository userRepository = new UserRepository();
 
                 var username = model.Email;
-               
                 var id = userRepository.GetUserID(username);
+
+                AddressModel addressModel = new AddressModel
+                {
+                    Country = model.Country,
+                    City = model.City
+                };
+
+                AddressRepository addressRepository = new AddressRepository();
+                addressRepository.InsertAddress(addressModel);
+                int addressId = addressRepository.GetLastAddressId();
 
                 CustomerRepository customerRepository = new CustomerRepository();
 
-                var customerModel = new CustomerModel { FirstName = model.FirstName, LastName=model.LastName, Email=model.Email,Phone=model.Phone, UserID = id };
+                CustomerModel customerModel = new CustomerModel
+                {
+                    FirstName = model.FirstName,
+                    LastName = model.LastName,
+                    Email = model.Email,
+                    Phone = model.Phone,
+                    UserID = id,
+                    AddressID = addressId
+                };
 
                 customerRepository.InsertCustomer(customerModel);
 

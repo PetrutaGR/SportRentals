@@ -19,6 +19,15 @@ namespace SportRentals.Controllers
         {
             List<Models.CustomerModel> customers = customerRepository.GetAllCustomers();
 
+            AddressRepository addressRepository = new AddressRepository();
+
+            foreach (var customer in customers)
+            {
+                var address = addressRepository.GetAddressByID(customer.AddressID);
+                customer.City = address.City;
+                customer.Country = address.Country;
+            }
+
             return View("Index", customers);
         }
 

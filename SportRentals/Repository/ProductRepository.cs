@@ -163,10 +163,9 @@ namespace SportRentals.Repository
                             productCategory.CategoryName = category.Name;
                         }
 
-                        productCategoryList.Add(productCategory);
                     }
 
-                    
+                    productCategoryList.Add(productCategory);
 
                 }
                 return productCategoryList;

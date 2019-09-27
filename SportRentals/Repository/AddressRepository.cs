@@ -81,6 +81,11 @@ namespace SportRentals.Repository
             dbContext.SubmitChanges();
         }
 
+        public int GetLastAddressId()
+        {
+            return dbContext.Addresses.ToList().Last().AddressID;
+        }
+
         public void UpdateAddress(AddressModel addressModel)
         {
             Models.DBObjects.Address existingAddress = dbContext.Addresses.FirstOrDefault(x => x.AddressID == addressModel.AddressID);

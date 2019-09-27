@@ -61,6 +61,20 @@ namespace SportRentals.Repository
             return paymentMethodList;
         }
 
+        public List<PaymentMethodModel> GetAllPaymentMethodsByShopId(int shopID)
+        {
+            List<PaymentMethodModel> paymentMethodList = new List<PaymentMethodModel>();
+
+            var shopPaymentMethods = dbContext.ShopPaymentMethods.Where(x => x.ShopID == shopID);
+            
+            foreach (var shopPaymentMethod in shopPaymentMethods)
+            {
+                var dbPaymentMethod = dbContext.PaymentMethods.FirstOrDefault(x => x.PaymentMethodID == shopPaymentMethod.PaymentMethodID);
+                paymentMethodList.Add(MapDbObjectToModel(dbPaymentMethod));
+            }
+            return paymentMethodList;
+        }
+
         public PaymentMethodModel GetPaymentMethodByID(int ID)
         {
             return MapDbObjectToModel(dbContext.PaymentMethods.FirstOrDefault(x => x.PaymentMethodID == ID));

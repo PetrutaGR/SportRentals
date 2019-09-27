@@ -196,7 +196,8 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\Service.cs" />
+    <Compile Include="ViewModels\AccountViewModels.cs" />
     <Compile Include="Models\AddressModel.cs" />
     <Compile Include="Models\CategoryModel.cs" />
     <Compile Include="Models\CustomerModel.cs" />
@@ -209,7 +210,7 @@
       <DependentUpon>SportRentals.dbml</DependentUpon>
     </Compile>
     <Compile Include="Models\IdentityModels.cs" />
-    <Compile Include="Models\ManageViewModels.cs" />
+    <Compile Include="ViewModels\ManageViewModels.cs" />
     <Compile Include="Models\OrderModel.cs" />
     <Compile Include="Models\OrderProductModel.cs" />
     <Compile Include="Models\PaymentMethodModel.cs" />
@@ -231,6 +232,7 @@
     <Compile Include="ViewModels\ErrorViewModel.cs" />
     <Compile Include="ViewModels\OrderProductsViewModel.cs" />
     <Compile Include="ViewModels\ProductCategoryViewModel.cs" />
+    <Compile Include="ViewModels\ShopCategoryViewModel.cs" />
     <Compile Include="ViewModels\ShopViewModel.cs" />
     <Compile Include="ViewModels\ShopProductsViewModel.cs" />
   </ItemGroup>
@@ -288,6 +290,8 @@
     <Content Include="Views\Category\Delete.cshtml" />
     <Content Include="Views\Category\CreateCategory.cshtml" />
     <Content Include="Views\Order\CreateOrder.cshtml" />
+    <Content Include="Views\Product\EditProduct.cshtml" />
+    <Content Include="Views\Product\Index.cshtml" />
     <None Include="Views\Shared\_assemblylayout.cshtml" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
@@ -324,7 +328,6 @@
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Product\CreateProduct.cshtml" />
-    <Content Include="Views\Product\EditProduct.cshtml" />
     <Content Include="Views\Product\DeleteProduct.cshtml" />
     <Content Include="Views\Product\Details.cshtml" />
     <Content Include="Views\Customer\Delete.cshtml" />
@@ -348,7 +351,7 @@
     <Content Include="Views\Order\Delete.cshtml" />
     <Content Include="Views\Order\OrderProducts.cshtml" />
     <Content Include="Views\PaymentMethod\Delete.cshtml" />
-    <Content Include="Views\PaymentMethod\Edit.cshtml" />
+    <Content Include="Views\PaymentMethod\EditPaymentMethod.cshtml" />
     <Content Include="Views\PaymentMethod\CreatePaymentMethod.cshtml" />
     <Content Include="Views\PaymentMethod\Details.cshtml" />
     <Content Include="Views\PaymentMethod\Index.cshtml" />
@@ -357,8 +360,6 @@
     <Content Include="Views\Shop\IndexwithName.cshtml" />
     <Content Include="Views\ProductUser\Index.cshtml" />
     <Content Include="Views\Invoicing\SendEmail.cshtml" />
-    <Content Include="Views\Product\ProductDetails.cshtml" />
-    <Content Include="Views\Product\Index.cshtml" />
     <Content Include="Views\Shop\ShopUI.cshtml" />
   </ItemGroup>
   <ItemGroup>

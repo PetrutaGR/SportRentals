@@ -10,14 +10,7 @@
       <Column Name="StreetNumber" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Column Name="PostCode" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
       <Association Name="Address_Shop" Member="Shops" ThisKey="AddressID" OtherKey="AddressID" Type="Shop" />
-    </Type>
-  </Table>
-  <Table Name="dbo.PaymentMethods" Member="PaymentMethods">
-    <Type Name="PaymentMethod">
-      <Column Name="PaymentMethodID" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
-      <Column Name="Name" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
-      <Column Name="Description" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
-      <Association Name="PaymentMethod_ShopPaymentMethod" Member="ShopPaymentMethods" ThisKey="PaymentMethodID" OtherKey="PaymentMethodID" Type="ShopPaymentMethod" />
+      <Association Name="Address_Customer" Member="Customers" ThisKey="AddressID" OtherKey="AddressId" Type="Customer" />
     </Type>
   </Table>
   <Table Name="dbo.ShopPaymentMethods" Member="ShopPaymentMethods">
@@ -28,27 +21,13 @@
       <Association Name="Shop_ShopPaymentMethod" Member="Shop" ThisKey="ShopID" OtherKey="ShopId" Type="Shop" IsForeignKey="true" />
     </Type>
   </Table>
-  <Table Name="dbo.Shops" Member="Shops">
-    <Type Name="Shop">
-      <Column Name="ShopId" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
-      <Column Name="AddressID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="Name" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
-      <Column Name="Phone" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
-      <Column Name="Email" Type="System.String" DbType="VarChar(80) NOT NULL" CanBeNull="false" />
-      <Column Name="CategoryID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Association Name="Shop_ShopPaymentMethod" Member="ShopPaymentMethods" ThisKey="ShopId" OtherKey="ShopID" Type="ShopPaymentMethod" />
-      <Association Name="Shop_Order" Member="Orders" ThisKey="ShopId" OtherKey="ShopID" Type="Order" />
-      <Association Name="Address_Shop" Member="Address" ThisKey="AddressID" OtherKey="AddressID" Type="Address" IsForeignKey="true" />
-      <Association Name="Category_Shop" Member="Category" ThisKey="CategoryID" OtherKey="CategoryID" Type="Category" IsForeignKey="true" />
-    </Type>
-  </Table>
   <Table Name="dbo.Categories" Member="Categories">
     <Type Name="Category">
       <Column Name="CategoryID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
       <Column Name="Name" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
       <Column Name="Description" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
-      <Association Name="Category_Shop" Member="Shops" ThisKey="CategoryID" OtherKey="CategoryID" Type="Shop" />
       <Association Name="Category_Product" Member="Products" ThisKey="CategoryID" OtherKey="CategoryID" Type="Product" />
+      <Association Name="Category_Shop" Member="Shops" ThisKey="CategoryID" OtherKey="CategoryID" Type="Shop" />
     </Type>
   </Table>
   <Table Name="dbo.Orders" Member="Orders">
@@ -104,6 +83,29 @@
       <Association Name="AspNetUser_Customer" Member="Customers" ThisKey="Id" OtherKey="UserID" Type="Customer" />
     </Type>
   </Table>
+  <Table Name="dbo.PaymentMethods" Member="PaymentMethods">
+    <Type Name="PaymentMethod">
+      <Column Name="PaymentMethodID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Name" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Description" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Association Name="PaymentMethod_ShopPaymentMethod" Member="ShopPaymentMethods" ThisKey="PaymentMethodID" OtherKey="PaymentMethodID" Type="ShopPaymentMethod" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Shops" Member="Shops">
+    <Type Name="Shop">
+      <Column Name="ShopId" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="AddressID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Name" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="Phone" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="Email" Type="System.String" DbType="VarChar(80) NOT NULL" CanBeNull="false" />
+      <Column Name="CategoryID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="CategoryName" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Association Name="Shop_ShopPaymentMethod" Member="ShopPaymentMethods" ThisKey="ShopId" OtherKey="ShopID" Type="ShopPaymentMethod" />
+      <Association Name="Shop_Order" Member="Orders" ThisKey="ShopId" OtherKey="ShopID" Type="Order" />
+      <Association Name="Address_Shop" Member="Address" ThisKey="AddressID" OtherKey="AddressID" Type="Address" IsForeignKey="true" />
+      <Association Name="Category_Shop" Member="Category" ThisKey="CategoryID" OtherKey="CategoryID" Type="Category" IsForeignKey="true" />
+    </Type>
+  </Table>
   <Table Name="dbo.Customers" Member="Customers">
     <Type Name="Customer">
       <Column Name="CustomerID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
@@ -111,8 +113,10 @@
       <Column Name="LastName" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
       <Column Name="Phone" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
       <Column Name="Email" Type="System.String" DbType="VarChar(80) NOT NULL" CanBeNull="false" />
-      <Column Name="UserID" Type="System.String" DbType="NVarChar(128)" CanBeNull="true" />
+      <Column Name="UserID" Type="System.String" DbType="NVarChar(128) NOT NULL" CanBeNull="false" />
+      <Column Name="AddressId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
       <Association Name="Customer_Order" Member="Orders" ThisKey="CustomerID" OtherKey="CustomerID" Type="Order" />
+      <Association Name="Address_Customer" Member="Address" ThisKey="AddressId" OtherKey="AddressID" Type="Address" IsForeignKey="true" />
       <Association Name="AspNetUser_Customer" Member="AspNetUser" ThisKey="UserID" OtherKey="Id" Type="AspNetUser" IsForeignKey="true" />
     </Type>
   </Table>

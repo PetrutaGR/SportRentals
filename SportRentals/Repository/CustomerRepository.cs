@@ -36,6 +36,7 @@ namespace SportRentals.Repository
                 customerModel.LastName = dbCustomer.LastName;
                 customerModel.Phone = dbCustomer.Phone;
                 customerModel.Email = dbCustomer.Email;
+                customerModel.AddressID = dbCustomer.AddressId;
 
                 return customerModel;
             }
@@ -55,6 +56,8 @@ namespace SportRentals.Repository
                 dbCustomerModel.LastName = customerModel.LastName;
                 dbCustomerModel.Phone = customerModel.Phone;
                 dbCustomerModel.Email = customerModel.Email;
+                dbCustomerModel.UserID = customerModel.UserID;
+                dbCustomerModel.AddressId = customerModel.AddressID;
 
                 return dbCustomerModel;
             }
@@ -66,6 +69,7 @@ namespace SportRentals.Repository
             List<CustomerModel> customerList = new List<CustomerModel>();
             foreach(Models.DBObjects.Customer dbCustomer in dbContext.Customers)
             {
+
                 customerList.Add(MapDbObjectToModel(dbCustomer));
             }
             return customerList;

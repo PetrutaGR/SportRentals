@@ -20,16 +20,16 @@ namespace SportRentals.Controllers
         [Authorize(Roles = "Admin")]
         public ActionResult Index()
         {
-            List<ProductModel> products = productRepository.GetAllProducts();
+            List<ProductCategoryViewModel> products = productRepository.GetAllProductwithName();
             return View("Index", products);
         }
 
-        [Authorize(Roles = "User")]
-        public ActionResult ProductDetails()
-        {
-            List<ProductCategoryViewModel> products = productRepository.GetAllProductwithName();
-            return View("ProductDetails", products);
-        }
+        //[Authorize(Roles = "Admin")]
+        //public ActionResult ProductDetails()
+        //{
+        //    List<ProductCategoryViewModel> products = productRepository.GetAllProductwithName();
+        //    return View("ProductDetails", products);
+        //}
 
 
         [Authorize(Roles = "Admin")]

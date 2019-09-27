@@ -20,9 +20,10 @@ namespace SportRentals.Controllers
         [Authorize(Roles = "Admin")]
         public ActionResult Index()
         {
+            var service = new Service();
+            List<ShopViewModel> shopViewModels = service.GetAllShops();
 
-            List<ShopModel> shops = shopRepository.GetAllShops();
-            return View("Index", shops);
+            return View("Index", shopViewModels);
         }
 
         [Authorize(Roles = "User,Admin")]

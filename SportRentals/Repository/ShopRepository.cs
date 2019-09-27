@@ -10,6 +10,8 @@ namespace SportRentals.Repository
 {
     public class ShopRepository
     {
+
+        private CategoryRepository categoryRepository = new CategoryRepository();
         private Models.DBObjects.SportRentalsDataContext dbContext;
 
         public ShopRepository()
@@ -33,7 +35,8 @@ namespace SportRentals.Repository
                 shopModel.Phone = dbShop.Phone;
                 shopModel.Email = dbShop.Email;
                 shopModel.CategoryID = dbShop.CategoryID;
-
+               
+               
                 return shopModel;
             }
             return null;
@@ -207,6 +210,25 @@ namespace SportRentals.Repository
 
             return shopsList;
         }
+
+        public List<ShopModel> GetAllShopswithName()
+        {
+            List<ShopModel> shopCategoryList = new List<ShopModel>();
+            foreach (Models.DBObjects.Shop dbShop in dbContext.Shops)
+            {
+                ShopModel shop = new ShopModel();
+                shop.ShopId = dbShop.ShopId;
+                shop.AddressID = dbShop.AddressID;
+                shop.Name = dbShop.Name;
+                shop.Phone = dbShop.Phone;
+                shop.Email = dbShop.Email;
+                shop.CategoryID = dbShop.CategoryID;
+                shopCategoryList.Add(shop);
+
+            }
+            return shopCategoryList;
+        }
+
 
 
 
