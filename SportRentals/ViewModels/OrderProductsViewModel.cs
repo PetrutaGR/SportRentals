@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using SportRentals.Models;
 
 namespace SportRentals.ViewModels
 {
@@ -14,6 +15,6 @@ namespace SportRentals.ViewModels
         public decimal Total { get; set; }
         public DateTime CreatedDateTime { get; set; }
 
-        public List<Product> Products = new List<Product>();
+        public List<ProductModel> Products { get; set; }
     }
 }

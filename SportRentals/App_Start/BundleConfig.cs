@@ -24,6 +24,8 @@ namespace SportRentals
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",
+                      "~/Content/bootstrap-datepicker.min.css",
+                      "~/Content/bootstrap-theme.css",
                       "~/Content/site.css"));
         }
     }

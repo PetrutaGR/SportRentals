@@ -13,11 +13,38 @@ namespace SportRentals.Controllers
     {
 
         private OrderRepository orderRepository = new OrderRepository();
+        private OrderProductsRepository orderProductsRepository = new OrderProductsRepository();
+
+        private ShopRepository shopRepository = new ShopRepository();
+        private CustomerRepository customerRepository = new CustomerRepository();
+        private StatusRepository statusRepository = new StatusRepository();
+        private ProductRepository productRepository = new ProductRepository();
+
         // GET: Order
         public ActionResult Index()
         {
             List<Models.OrderModel> orders = orderRepository.GetAllOrders();
-            return View("Index", orders);
+
+            List<OrderViewModel> orderViewModels = new List<OrderViewModel>();
+
+            foreach (var orderModel in orders)
+            {
+                var orderViewModel = new OrderViewModel();
+                orderViewModel.Order = orderModel;
+
+                var shop = shopRepository.GetShopByID(orderModel.ShopID);
+                orderViewModel.ShopName = shop.Name;
+
+                var customer = customerRepository.GetCustomerById(orderModel.CustomerID);
+                orderViewModel.CustomerName = customer.FirstName + " " + customer.LastName;
+
+                var status = statusRepository.GetStatus(orderModel.StatusID);
+                orderViewModel.StatusName = status.Name;
+
+                orderViewModels.Add(orderViewModel);
+            }
+
+            return View("Index", orderViewModels);
         }
 
         // GET: Order/Details/5
@@ -29,9 +56,10 @@ namespace SportRentals.Controllers
 
         public ActionResult OrderProducts(int id)
         {
-            OrderProductsViewModel viewModel = orderRepository.GetOrderProducts(id);
 
-            return View("OrderProducts", viewModel);
+            OrderProductsViewModel orderProductsViewModel = new OrderProductsViewModel();
+
+            return View("OrderProducts", orderProductsViewModel);
         }
 
         // GET: Order/Create
@@ -62,7 +90,32 @@ namespace SportRentals.Controllers
         public ActionResult Edit(int id)
         {
             Models.OrderModel orderModel = orderRepository.GetOrderByID(id);
-            return View("EditOrder", orderModel);
+            
+            var orderViewModel = new OrderViewModel();
+            orderViewModel.Order = orderModel;
+
+            var shop = shopRepository.GetShopByID(orderModel.ShopID);
+            orderViewModel.ShopName = shop.Name;
+
+            var customer = customerRepository.GetCustomerById(orderModel.CustomerID);
+            orderViewModel.CustomerName = customer.FirstName + " " + customer.LastName;
+
+            var statuses = statusRepository.GetAllStatuses();
+            SelectList statusList = new SelectList(statuses, "StatusID", "Name");
+            ViewData["StatusList"] = statusList;
+
+            var orderProducts = orderProductsRepository.GetOrderProductsByOrderId(id);
+
+            List<ProductModel> products = new List<ProductModel>();
+            foreach (var orderProduct in orderProducts)
+            {
+                var product = productRepository.GetProductById(orderProduct.ProductID);
+                products.Add(product);
+            }
+
+            orderViewModel.Products = products;
+
+            return View("EditOrder", orderViewModel);
         }
 
         // POST: Order/Edit/5
@@ -71,15 +124,21 @@ namespace SportRentals.Controllers
         {
             try
             {
-                Models.OrderModel orderModel = new OrderModel();
-                UpdateModel(orderModel);
+                var orderViewModel = new OrderViewModel();
+                TryUpdateModel(orderViewModel);
+
+                var orderModel = new OrderModel();
+                orderModel = orderViewModel.Order;
+
+
                 orderRepository.UpdateOrder(orderModel);
 
                 return RedirectToAction("Index");
             }
-            catch
+            catch (Exception ex)
             {
-                return View("EditOrder");
+                HandleErrorInfo error = new HandleErrorInfo(ex, "Order", "Edit");
+                return View("Error", error);
             }
         }
 

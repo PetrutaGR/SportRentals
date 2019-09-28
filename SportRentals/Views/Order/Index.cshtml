@@ -1,72 +1,45 @@
-﻿@model IEnumerable<SportRentals.Models.OrderModel>
+﻿@model List<SportRentals.ViewModels.OrderViewModel>
 
 @{
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
+    <link href="~/Content/MvcGrid/mvc-grid.css" rel="stylesheet">
     //Layout = "~/Views/Shared/_assemblylayout.cshtml";
 }
 
 <h2>Index</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create",null, new {@class="btn btn-primary"})
+    @Html.ActionLink("Create New", "Create", null, new { @class = "btn btn-primary" })
 </p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.OrderID)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.CustomerID)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.ShopID)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.StartDate)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.EndDate)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Total)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.CreatedDateTime)
-        </th>
-        <th></th>
-    </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.OrderID)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.CustomerID)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.ShopID)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.StartDate)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.EndDate)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Total)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.CreatedDateTime)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id = item.OrderID }) |
-            @Html.ActionLink("Details", "Details", new { id = item.OrderID }) |
-            @Html.ActionLink("Delete", "Delete", new { id = item.OrderID }) |
-            @Html.ActionLink("OrderProducts", "OrderProducts", new { id = item.OrderID }) |
-        </td>
-    </tr>
-}
 
-</table>
+@(Html
+    .Grid(Model)
+    .Build(columns =>
+    {
+        columns.Add(model => model.Order.OrderID).Titled("ID").RenderedAs(model => 
+            @Html.ActionLink(model.Order.OrderID.ToString(), "Edit", new {id = model.Order.OrderID}));
+
+        columns.Add(model => model.ShopName).Titled("Shop");
+        columns.Add(model => model.CustomerName).Titled("Customer");
+
+        columns.Add(model => model.Order.StartDate).Titled("Start").Formatted("{0:MM/dd/yyyy}");
+        columns.Add(model => model.Order.EndDate).Titled("End").Formatted("{0:MM/dd/yyyy}");
+        columns.Add(model => model.Order.CreatedDateTime).Titled("Created").Formatted("{0:MM/dd/yyyy}");
+        columns.Add(model => model.StatusName).Titled("Status");
+
+        columns.Add(model => model.Order.Total).Titled("Total").Formatted("{0:C2}");
+
+    })
+    .Empty("No data found")
+    .Filterable()
+    .Sortable()
+    .Pageable()
+)
+@*<td>
+        @Html.ActionLink("Edit", "Edit", new {id = item.OrderID}) |
+        @Html.ActionLink("Details", "Details", new {id = item.OrderID}) |
+        @Html.ActionLink("Delete", "Delete", new {id = item.OrderID}) |
+        @Html.ActionLink("OrderProducts", "OrderProducts", new {id = item.OrderID}) |
+    </td>*@

@@ -15,7 +15,9 @@ namespace SportRentals.Controllers
         private ShopRepository shopRepository = new ShopRepository();
         private CategoryRepository categoryRepository = new CategoryRepository();
         private OrderRepository orderRepository = new OrderRepository();
-
+        private AddressRepository addressRepository = new AddressRepository();
+        private PaymentMethodsRepository paymentMethodsRepository = new PaymentMethodsRepository();
+        private ShopPaymentMethodsRepository shopPaymentMethodsRepository = new ShopPaymentMethodsRepository();
         // GET: Shop
         [Authorize(Roles = "Admin")]
         public ActionResult Index()
@@ -93,7 +95,43 @@ namespace SportRentals.Controllers
         public ActionResult Edit(int id)
         {
             Models.ShopModel shopModel = shopRepository.GetShopByID(id);
-            return View("EditShop", shopModel);
+
+            var shopViewModel = new ShopEditViewModel();
+            shopViewModel.Shop = shopModel;
+
+            var categories = categoryRepository.GetAllCategories();
+            SelectList categoryList = new SelectList(categories, "CategoryID", "Name");
+            ViewData["CategoryList"] = categoryList;
+
+            var address = addressRepository.GetAddressByID(shopModel.AddressID);
+            shopViewModel.Address = address;
+
+            var allPaymentMethods = paymentMethodsRepository.GetAllPaymentMethods();
+            ViewData["AllPaymentMethods"] = allPaymentMethods;
+
+            var shopPaymentMethods = paymentMethodsRepository.GetAllPaymentMethodsByShopId(shopModel.ShopId);
+
+            List<PaymentMethodViewModel> paymentMethodViewModels = new List<PaymentMethodViewModel>();
+
+            foreach (var paymentMethodModel in allPaymentMethods)
+            {
+                var paymentMethodViewModel = new PaymentMethodViewModel();
+                paymentMethodViewModel.PaymentMethod = paymentMethodModel;
+                
+                foreach (var shopPaymentMethod in shopPaymentMethods)
+                {
+                    if (shopPaymentMethod.PaymentMethodID == paymentMethodModel.PaymentMethodID)
+                    {
+                        paymentMethodViewModel.Selected = true;
+                    }
+                }
+
+                paymentMethodViewModels.Add(paymentMethodViewModel);
+            }
+
+            shopViewModel.PaymentMethods = paymentMethodViewModels;
+
+            return View("EditShop", shopViewModel);
         }
 
         [Authorize(Roles = "Admin")]
@@ -103,15 +141,48 @@ namespace SportRentals.Controllers
         {
             try
             {
-                ShopModel shopModel = new ShopModel();
-                UpdateModel(shopModel);
+                ShopEditViewModel shopViewModel = new ShopEditViewModel();
+                TryUpdateModel(shopViewModel);
+
+                var shopModel = new ShopModel();
+                shopModel.ShopId = shopViewModel.Shop.ShopId;
+                shopModel.AddressID = shopViewModel.Address.AddressID;
+                shopModel.Email = shopViewModel.Shop.Email;
+                shopModel.Name = shopViewModel.Shop.Name;
+                shopModel.Phone = shopViewModel.Shop.Phone;
+                shopModel.CategoryID = shopViewModel.Shop.CategoryID;
                 shopRepository.UpdateShop(shopModel);
+
+                var addressModel = new AddressModel();
+                addressModel.AddressID = shopViewModel.Address.AddressID;
+                addressModel.City = shopViewModel.Address.City;
+                addressModel.Country = shopViewModel.Address.Country;
+                addressModel.County = shopViewModel.Address.County;
+                addressModel.PostCode = shopViewModel.Address.PostCode;
+                addressModel.Street = shopViewModel.Address.Street;
+                addressModel.StreetNumber = shopViewModel.Address.StreetNumber;
+                addressRepository.UpdateAddress(addressModel);
+
+                shopPaymentMethodsRepository.DeleteShopPaymentMethods(shopViewModel.Shop.ShopId);
+
+                foreach (var paymentMethodViewModel in shopViewModel.PaymentMethods)
+                {
+                    if (paymentMethodViewModel.Selected == true)
+                    {
+                        var shopPaymentMethod = new ShopPaymentMethodModel();
+                        shopPaymentMethod.PaymentMethodID = paymentMethodViewModel.PaymentMethod.PaymentMethodID;
+                        shopPaymentMethod.ShopID = shopViewModel.Shop.ShopId;
+
+                        shopPaymentMethodsRepository.InsertShopPaymentMethod(shopPaymentMethod);
+                    }
+                }
 
                 return RedirectToAction("Index");
             }
-            catch
+            catch (Exception ex)
             {
-                return View("EditShop");
+                HandleErrorInfo error = new HandleErrorInfo(ex, "Shop", "Edit");
+                return View("Error", error);
             }
         }
 
@@ -138,9 +209,10 @@ namespace SportRentals.Controllers
 
                 return RedirectToAction("Index");
             }
-            catch
+            catch (Exception ex)
             {
-                return View("Delete");
+                HandleErrorInfo error = new HandleErrorInfo(ex, "Shop", "Delete");
+                return View("Error", error);
             }
         }
     }

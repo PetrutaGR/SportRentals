@@ -14,13 +14,13 @@ namespace SportRentals.Models
         public int ShopID { get; set; }
 
         [DataType(DataType.DateTime, ErrorMessage = "Invalid Datetime")]
-        [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}")]
+        [DisplayFormat(DataFormatString = "{0:MM/dd/yyyy}", ApplyFormatInEditMode = true)]
         public DateTime StartDate { get; set; }
 
 
 
         [DataType(DataType.DateTime, ErrorMessage = "Invalid Datetime")]
-        [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}")]
+        [DisplayFormat(DataFormatString = "{0:MM/dd/yyyy}", ApplyFormatInEditMode = true)]
         public DateTime EndDate { get; set; }
 
 
@@ -30,9 +30,10 @@ namespace SportRentals.Models
 
 
         [DataType(DataType.DateTime, ErrorMessage = "Invalid Datetime")]
-        [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}")]
+        [DisplayFormat(DataFormatString = "{0:MM/dd/yyyy}", ApplyFormatInEditMode = true)]
         public DateTime CreatedDateTime { get; set; }
 
-        public string Status { get; set; }
+        [Display(Name = "Status")]
+        public int StatusID { get; set; }
     }
 }

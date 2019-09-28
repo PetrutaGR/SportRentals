@@ -33,7 +33,8 @@ namespace SportRentals.Repository
                 orderModel.StartDate = dbOrder.StartDate;
                 orderModel.EndDate = dbOrder.EndDate;
                 orderModel.CreatedDateTime = dbOrder.CreatedDateTime;
-                orderModel.Status = dbOrder.Status;
+                orderModel.StatusID = dbOrder.StatusID;
+                orderModel.Total = dbOrder.Total;
 
                 return orderModel;
                     
@@ -53,7 +54,8 @@ namespace SportRentals.Repository
                 dbOrderModel.StartDate = orderModel.StartDate;
                 dbOrderModel.EndDate = orderModel.EndDate;
                 dbOrderModel.CreatedDateTime = orderModel.CreatedDateTime;
-                dbOrderModel.Status = orderModel.Status;
+                dbOrderModel.StatusID = orderModel.StatusID;
+                dbOrderModel.Total = orderModel.Total;
 
                 return dbOrderModel;
 
@@ -75,34 +77,6 @@ namespace SportRentals.Repository
         public OrderModel GetOrderByID(int ID)
         {
             return MapDbObjectToModel(dbContext.Orders.FirstOrDefault(x => x.OrderID == ID));
-        }
-
-        public OrderProductsViewModel GetOrderProducts(int orderId)
-        {
-            Order order = dbContext.Orders.FirstOrDefault(x => x.OrderID == orderId);
-
-            List<Models.DBObjects.OrderProduct> orderProducts = new List<Models.DBObjects.OrderProduct>();
-            foreach (Models.DBObjects.OrderProduct dbProduct in dbContext.OrderProducts.Where(x => x.OrderID == orderId))
-            {
-                orderProducts.Add(dbProduct);
-            }
-
-            List<Models.DBObjects.Product> products = new List<Models.DBObjects.Product>();
-            foreach (var orderProduct in orderProducts)
-            {
-                Models.DBObjects.Product product = dbContext.Products.FirstOrDefault(x => x.ProductID == orderProduct.ProductID);
-                products.Add(product);
-            }
-
-            OrderProductsViewModel orderProductsViewModel = new OrderProductsViewModel();
-            orderProductsViewModel.OrderID = order.OrderID;
-            orderProductsViewModel.StartDate = order.StartDate;
-            orderProductsViewModel.EndDate = order.EndDate;
-            orderProductsViewModel.Total = order.Total;
-
-            orderProductsViewModel.Products = products;
-
-            return orderProductsViewModel;
         }
 
         public List<OrderModel> GetOrderByEffectiveDates(DateTime startDate, DateTime endDate)
@@ -132,8 +106,8 @@ namespace SportRentals.Repository
                 existingOrder.StartDate = orderModel.StartDate;
                 existingOrder.EndDate = orderModel.EndDate;
                 existingOrder.CreatedDateTime = orderModel.CreatedDateTime;
-                existingOrder.Status = orderModel.Status;
-
+                existingOrder.StatusID = orderModel.StatusID;
+                existingOrder.Total = orderModel.Total;
                 dbContext.SubmitChanges();
 
             }
@@ -163,7 +137,7 @@ namespace SportRentals.Repository
                 orderModel.EndDate = dbOrder.EndDate;
                 orderModel.Total = dbOrder.Total;
                 orderModel.CreatedDateTime = dbOrder.CreatedDateTime;
-                orderModel.Status = dbOrder.Status;
+                orderModel.StatusID = dbOrder.StatusID;
 
                 ordersList.Add(orderModel);
             }
@@ -184,13 +158,22 @@ namespace SportRentals.Repository
                 orderModel.EndDate = dbOrder.EndDate;
                 orderModel.Total = dbOrder.Total;
                 orderModel.CreatedDateTime = dbOrder.CreatedDateTime;
-                orderModel.Status = dbOrder.Status;
+                orderModel.StatusID = dbOrder.StatusID;
 
                 ordersList.Add(orderModel);
             }
             return ordersList;
         }
 
+        public void DeleteOrderProductByOrderId(int orderId)
+        {
+            Models.DBObjects.OrderProduct productToDelete = dbContext.OrderProducts.FirstOrDefault(x => x.OrderID == orderId);
+            if (productToDelete != null)
+            {
+                dbContext.OrderProducts.DeleteOnSubmit(productToDelete);
+                dbContext.SubmitChanges();
+            }
+        }
 
     }
 }

@@ -10,12 +10,12 @@ namespace SportRentals.Models
     public class ShopModel
     {
         [Display(Name = "ID")]
+        [Editable(false)]
         public int ShopId { get; set; }
         public int AddressID { get; set;}
 
         [Required(ErrorMessage = "Mandatory field")]
         [StringLength(50, ErrorMessage = "The name is too long(max 50 chars)")]
-        [Display(Name = "Shop")]
         public string Name { get; set; }
 
 
@@ -28,7 +28,7 @@ namespace SportRentals.Models
         [StringLength(50, ErrorMessage = "The name is too long(max 50 chars)")]
         public string Email { get; set; }
 
-
+        [Display(Name = "Category")]
         public int CategoryID { get; set; }
 
 

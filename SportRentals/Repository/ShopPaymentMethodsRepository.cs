@@ -10,6 +10,7 @@ namespace SportRentals.Repository
     {
 
         private Models.DBObjects.SportRentalsDataContext dbContext;
+
         public ShopPaymentMethodsRepository()
         {
             this.dbContext = new Models.DBObjects.SportRentalsDataContext();
@@ -64,14 +65,13 @@ namespace SportRentals.Repository
             dbContext.SubmitChanges();
         }
 
-        public void DeleteOrderProductByOrderId(int orderId)
+
+        public void DeleteShopPaymentMethods(int shopId)
         {
-            Models.DBObjects.OrderProduct productToDelete = dbContext.OrderProducts.FirstOrDefault(x => x.OrderID == orderId);
-            if (productToDelete != null)
-            {
-                dbContext.OrderProducts.DeleteOnSubmit(productToDelete);
-                dbContext.SubmitChanges();
-            }
+            var shopPaymentMethods = dbContext.ShopPaymentMethods.Where(x => x.ShopID == shopId);
+            dbContext.ShopPaymentMethods.DeleteAllOnSubmit(shopPaymentMethods);
+
+            dbContext.SubmitChanges();
         }
 
 
