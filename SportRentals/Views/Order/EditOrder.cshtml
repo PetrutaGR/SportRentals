@@ -22,115 +22,118 @@
     <div class="flex-container">
         <div>
             <h4>Information</h4>
-            <hr/>
-            @Html.ValidationSummary(true, "", new {@class = "text-danger"})
+            <hr />
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
             @Html.HiddenFor(model => model.Order.CustomerID)
             @Html.HiddenFor(model => model.Order.ShopID)
+            @Html.HiddenFor(model => model.InitialStatusID)
+
             <div class="input-group mb-3">
                 <div class="input-group-prepend">
                     <span>
-                        @Html.LabelFor(model => model.Order.OrderID, htmlAttributes: new {@class = "input-group-text"})
+                        @Html.LabelFor(model => model.Order.OrderID, htmlAttributes: new { @class = "input-group-text" })
                     </span>
                 </div>
-                @Html.ValidationMessageFor(model => model.Order.OrderID, "", new {@class = "text-danger"})
-                @Html.EditorFor(model => model.Order.OrderID, new {htmlAttributes = new {@class = "form-control", @readonly = true}})
+                @Html.ValidationMessageFor(model => model.Order.OrderID, "", new { @class = "text-danger" })
+                @Html.EditorFor(model => model.Order.OrderID, new { htmlAttributes = new { @class = "form-control", @readonly = true } })
             </div>
 
             <div class="input-group mb-3">
                 <div class="input-group-prepend">
                     <span>
-                        @Html.LabelFor(model => model.ShopName, htmlAttributes: new {@class = "input-group-text"})
+                        @Html.LabelFor(model => model.ShopName, htmlAttributes: new { @class = "input-group-text" })
                     </span>
                 </div>
-                @Html.ValidationMessageFor(model => model.ShopName, "", new {@class = "text-danger"})
-                @Html.EditorFor(model => model.ShopName, new {htmlAttributes = new {@class = "form-control", @readonly = true}})
+                @Html.ValidationMessageFor(model => model.ShopName, "", new { @class = "text-danger" })
+                @Html.EditorFor(model => model.ShopName, new { htmlAttributes = new { @class = "form-control", @readonly = true } })
             </div>
 
             <div class="input-group mb-3">
                 <div class="input-group-prepend">
                     <span>
-                        @Html.LabelFor(model => model.CustomerName, htmlAttributes: new {@class = "input-group-text"})
+                        @Html.LabelFor(model => model.CustomerName, htmlAttributes: new { @class = "input-group-text" })
                     </span>
                 </div>
-                @Html.ValidationMessageFor(model => model.CustomerName, "", new {@class = "text-danger"})
-                @Html.EditorFor(model => model.CustomerName, new {htmlAttributes = new {@class = "form-control", @readonly = true}})
+                @Html.ValidationMessageFor(model => model.CustomerName, "", new { @class = "text-danger" })
+                @Html.EditorFor(model => model.CustomerName, new { htmlAttributes = new { @class = "form-control", @readonly = true } })
             </div>
 
 
             <div class="input-group mb-3">
                 <div class="input-group-prepend">
                     <span>
-                        @Html.LabelFor(model => model.Order.StartDate, htmlAttributes: new {@class = "input-group-text"})
+                        @Html.LabelFor(model => model.Order.StartDate, htmlAttributes: new { @class = "input-group-text" })
                     </span>
                 </div>
-                @Html.ValidationMessageFor(model => model.Order.StartDate, "", new {@class = "text-danger"})
+                @Html.ValidationMessageFor(model => model.Order.StartDate, "", new { @class = "text-danger" })
                 <div style="width: 74%">
-                    @Html.EditorFor(model => model.Order.StartDate, new {htmlAttributes = new {@class = "form-control datetimepickerstart"}})
+                    @Html.EditorFor(model => model.Order.StartDate, new { htmlAttributes = new { @class = "form-control datetimepickerstart" } })
                 </div>
             </div>
             <div class="input-group mb-3">
                 <div class="input-group-prepend">
                     <span>
-                        @Html.LabelFor(model => model.Order.EndDate, htmlAttributes: new {@class = "input-group-text"})
+                        @Html.LabelFor(model => model.Order.EndDate, htmlAttributes: new { @class = "input-group-text" })
                     </span>
                 </div>
-                @Html.ValidationMessageFor(model => model.Order.EndDate, "", new {@class = "text-danger"})
+                @Html.ValidationMessageFor(model => model.Order.EndDate, "", new { @class = "text-danger" })
                 <div style="width: 75%">
-                    @Html.EditorFor(model => model.Order.EndDate, new {htmlAttributes = new {@class = "form-control datetimepickerend"}})
+                    @Html.EditorFor(model => model.Order.EndDate, new { htmlAttributes = new { @class = "form-control datetimepickerend" } })
 
                 </div>
             </div>
             <div class="input-group mb-3">
                 <div class="input-group-prepend">
                     <span>
-                        @Html.LabelFor(model => model.Order.CreatedDateTime, htmlAttributes: new {@class = "input-group-text"})
+                        @Html.LabelFor(model => model.Order.CreatedDateTime, htmlAttributes: new { @class = "input-group-text" })
                     </span>
                 </div>
-                @Html.ValidationMessageFor(model => model.Order.CreatedDateTime, "", new {@class = "text-danger"})
-                @Html.EditorFor(model => model.Order.CreatedDateTime, new {htmlAttributes = new {@class = "form-control", @readonly = true}})
+                @Html.ValidationMessageFor(model => model.Order.CreatedDateTime, "", new { @class = "text-danger" })
+                @Html.EditorFor(model => model.Order.CreatedDateTime, new { htmlAttributes = new { @class = "form-control", @readonly = true } })
             </div>
             <div class="input-group mb-3">
                 <div class="input-group-prepend">
                     <span>
-                        @Html.LabelFor(model => model.Order.Total, htmlAttributes: new {@class = "input-group-text"})
+                        @Html.LabelFor(model => model.Order.Total, htmlAttributes: new { @class = "input-group-text" })
                     </span>
                 </div>
-                @Html.ValidationMessageFor(model => model.Order.Total, "", new {@class = "text-danger"})
-                @Html.EditorFor(model => model.Order.Total, new {htmlAttributes = new {@class = "form-control"}})
+                @Html.ValidationMessageFor(model => model.Order.Total, "", new { @class = "text-danger" })
+                @Html.EditorFor(model => model.Order.Total, new { htmlAttributes = new { @class = "form-control" } })
             </div>
             <div class="input-group mb-3">
                 <div class="input-group-prepend">
-                    @Html.LabelFor(model => model.Order.StatusID, htmlAttributes: new {@class = "input-group-text"})
+                    @Html.LabelFor(model => model.Order.StatusID, htmlAttributes: new { @class = "input-group-text" })
                 </div>
-                @Html.DropDownListFor(model => model.Order.StatusID, ViewData["StatusList"] as IEnumerable<SelectListItem>, new {@class = "custom-select"})
-
+                @Html.DropDownListFor(model => model.Order.StatusID, ViewData["StatusList"] as IEnumerable<SelectListItem>, new { @class = "custom-select" })
             </div>
         </div>
         <div>
 
             <h4>Products</h4>
-            <hr/>
+            <hr />
             <table class="table table-striped">
                 <thead>
-                <tr>
-                    <th scope="col">#</th>
-                    <th scope="col">Name</th>
-                    <th scope="col">Daily price</th>
-                    <th scope="col">Stock</th>
-                </tr>
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Name</th>
+                        <th scope="col">Daily price</th>
+                        <th scope="col">Stock</th>
+                    </tr>
                 </thead>
                 <tbody>
                     @{
                         int nr = 1;
-                        foreach (var product in Model.Products)
+                        for (int i = 0; i < Model.Products.Count(); i++)
                         {
                             <tr>
                                 <th scope="row">@nr</th>
-                                <td>@product.Name</td>
-                                <td>@product.DailyPrice.ToString("C")</td>
-                                <td>@product.Stock</td>
+                                <td>@Html.DisplayFor(model => model.Products[i].Name)</td>
+                                <td>@Html.DisplayFor(model => model.Products[i].DailyPrice)</td>
+                                <td>@Html.DisplayFor(model => model.Products[i].Stock)</td>
                             </tr>
                             nr++;
+                            @Html.HiddenFor(model => model.Products[i].ProductID)
+                            @Html.HiddenFor(model => model.Products[i].Stock)
                         }
                     }
 
@@ -141,12 +144,12 @@
     </div>
 
     <script type="text/javascript">
-        $(function() {
+        $(function () {
             $('.datetimepickerend').datepicker({
                 uiLibrary: 'bootstrap4'
             });
         });
-        $(function() {
+        $(function () {
             $('.datetimepickerstart').datepicker({
                 uiLibrary: 'bootstrap4'
             });
@@ -155,7 +158,7 @@
     </script>
     <div class="form-group">
         <div class="col-md-offset-2 col-md-9">
-            <input type="submit" value="Save" class="btn btn-default"/>
+            <input type="submit" value="Save" class="btn btn-default" />
         </div>
     </div>
 }

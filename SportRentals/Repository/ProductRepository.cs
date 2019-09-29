@@ -111,7 +111,17 @@ namespace SportRentals.Repository
 
        }
 
-       public void UpdateProduct(ProductModel productModel)
+       public void UpdateStock(int productID, int stock)
+        {
+            Models.DBObjects.Product existingProduct = dbContext.Products.FirstOrDefault(x => x.ProductID == productID);
+            if (existingProduct != null)
+            {
+                existingProduct.Stock = stock;
+                dbContext.SubmitChanges();
+            }
+        }
+
+        public void UpdateProduct(ProductModel productModel)
        {
                 Models.DBObjects.Product existingProduct = dbContext.Products.FirstOrDefault(x => x.ProductID == productModel.ProductID);
 

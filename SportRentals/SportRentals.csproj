@@ -188,6 +188,7 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\AddressController.cs" />
+    <Compile Include="Controllers\CartController.cs" />
     <Compile Include="Controllers\CategoryController.cs" />
     <Compile Include="Controllers\CustomerController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -201,6 +202,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\Cart.cs" />
     <Compile Include="Models\Service.cs" />
     <Compile Include="Models\StatusModel.cs" />
     <Compile Include="Repository\StatusRepository.cs" />
@@ -217,6 +219,7 @@
       <DependentUpon>SportRentals.dbml</DependentUpon>
     </Compile>
     <Compile Include="Models\IdentityModels.cs" />
+    <Compile Include="ViewModels\CartViewModel.cs" />
     <Compile Include="ViewModels\EditOrderViewModel.cs" />
     <Compile Include="ViewModels\ManageViewModels.cs" />
     <Compile Include="Models\OrderModel.cs" />
@@ -241,6 +244,7 @@
     <Compile Include="ViewModels\OrderProductsViewModel.cs" />
     <Compile Include="ViewModels\OrderViewModel.cs" />
     <Compile Include="ViewModels\PaymentMethodViewModel.cs" />
+    <Compile Include="ViewModels\ProductCategoryShopViewModel.cs" />
     <Compile Include="ViewModels\ProductCategoryViewModel.cs" />
     <Compile Include="ViewModels\ShopCategoryViewModel.cs" />
     <Compile Include="ViewModels\ShopViewModel.cs" />
@@ -366,7 +370,6 @@
     <Content Include="Scripts\umd\popper.js" />
     <Content Include="Scripts\umd\popper.min.js" />
     <Content Include="Views\Home\ReadMore.cshtml" />
-    <Content Include="Views\Category\Index.cshtml" />
     <Content Include="Views\Category\Delete.cshtml" />
     <Content Include="Views\Category\CreateCategory.cshtml" />
     <Content Include="Views\Order\CreateOrder.cshtml" />
@@ -381,8 +384,11 @@
     <Content Include="Scripts\popper.js.map" />
     <Content Include="Scripts\popper-utils.min.js.map" />
     <Content Include="Scripts\popper-utils.js.map" />
+    <Content Include="Views\Category\Index.cshtml" />
     <Content Include="Views\Shared\MvcGrid\_Pager.cshtml" />
     <Content Include="Views\Shared\MvcGrid\_Grid.cshtml" />
+    <Content Include="Views\Cart\ViewCart.cshtml" />
+    <Content Include="Views\Cart\Index.cshtml" />
     <None Include="Views\Shared\_assemblylayout.cshtml" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
@@ -449,7 +455,7 @@
     <Content Include="Views\Shop\ShopProducts.cshtml" />
     <Content Include="Views\Shop\ShopView.cshtml" />
     <Content Include="Views\Shop\IndexwithName.cshtml" />
-    <Content Include="Views\ProductUser\Index.cshtml" />
+    <Content Include="Views\ProductUser\IndexUser.cshtml" />
     <Content Include="Views\Invoicing\SendEmail.cshtml" />
     <Content Include="Views\Shop\ShopUI.cshtml" />
     <Content Include="webfonts\fa-brands-400.svg" />
@@ -487,6 +493,7 @@
   <ItemGroup>
     <TypeScriptCompile Include="Scripts\index.d.ts" />
   </ItemGroup>
+  <ItemGroup />
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>

@@ -34,9 +34,9 @@
             <ul>
                 @{ if (User.IsInRole("User"))
                     {
-                        @*<li><strong>@Html.ActionLink("Book a product", "Index", "ProductUser")</strong></li>*@
-                        @*<li>@Html.ActionLink("ProductDetails", "ProductDetails", "Product")</li>*@
-                        <li>@Html.ActionLink("Products", "Index", "ProductUser")</li>
+                    
+                        <li>@Html.ActionLink("Go to Shop", "Index", "ProductUser")</li>
+                        
 
                     }
 
@@ -63,7 +63,7 @@
             <span class="byline">Discover now affordable rental sport equipment </span>
         </div>
         <ul class="actions">
-            <li>@Html.ActionLink("Read more", "ReadMore", null, new { @class = "btn btn-info", @role = "button", @style = "color:white" })</li>
+            
         </ul>
 
 
@@ -98,7 +98,7 @@
             
         </div>
     </div>
-    <div id="welcome">
+    @*<div id="welcome">
         <div class="container">
             <div class="title">
                 <h2>Save time, save money, rent now!</h2>
@@ -109,7 +109,7 @@
                 <li>@Html.ActionLink("CHECK OUT OUR SHOPS", "ShopUI", "Shop",null, new { @class = "btn btn-info", @role = "button", @style="color: white" })</li>
             </ul>
         </div>
-    </div>
+    </div>*@
 
     <div id="page">
         <div class="container">

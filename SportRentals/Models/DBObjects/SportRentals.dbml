@@ -118,7 +118,7 @@
       <Association Name="Order_OrderProduct" Member="OrderProducts" ThisKey="OrderID" OtherKey="OrderID" Type="OrderProduct" />
       <Association Name="Customer_Order" Member="Customer" ThisKey="CustomerID" OtherKey="CustomerID" Type="Customer" IsForeignKey="true" />
       <Association Name="Shop_Order" Member="Shop" ThisKey="ShopID" OtherKey="ShopId" Type="Shop" IsForeignKey="true" />
-      <Association Name="Statuses_Order" Member="Status" Storage="_Statuse" ThisKey="StatusID" OtherKey="StatusID" Type="Status" IsForeignKey="true" />
+      <Association Name="Status_Order" Member="Status" Storage="_Statuse" ThisKey="StatusID" OtherKey="StatusID" Type="Status" IsForeignKey="true" />
     </Type>
   </Table>
   <Table Name="dbo.Statuses" Member="Status">
@@ -126,7 +126,7 @@
       <Column Name="StatusID" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
       <Column Name="Name" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
       <Column Name="Description" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
-      <Association Name="Statuses_Order" Member="Orders" ThisKey="StatusID" OtherKey="StatusID" Type="Order" />
+      <Association Name="Status_Order" Member="Orders" ThisKey="StatusID" OtherKey="StatusID" Type="Order" />
     </Type>
   </Table>
 </Database>

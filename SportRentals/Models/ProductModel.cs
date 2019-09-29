@@ -15,6 +15,7 @@ namespace SportRentals.Models
 
         [Required(ErrorMessage = "Mandatory field")]
         [StringLength(200, ErrorMessage = "The name is too long(max 200 chars)")]
+        [Display(Name = "Product")]
         public string Name { get; set; }
 
 
@@ -24,12 +25,14 @@ namespace SportRentals.Models
 
 
         [DataType(DataType.Currency)]
+        [Display(Name = "Daily Price")]
         public decimal DailyPrice { get; set; }
 
 
         [Required(ErrorMessage = "Mandatory field")]
         public int Stock { get; set; }
 
+        [Display(Name = "Image")]
         public string ImageUrl { get; set; }
         
 

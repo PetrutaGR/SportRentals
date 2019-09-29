@@ -15,6 +15,9 @@ namespace SportRentals.ViewModels
         public string ShopName { get; set; }
 
         public string StatusName { get; set; }
+
+        public int InitialStatusID { get; set; }
+
         public List<ProductModel> Products { get; set; }
 
     }

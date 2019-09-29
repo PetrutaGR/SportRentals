@@ -2689,7 +2689,7 @@ namespace SportRentals.Models.DBObjects
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Statuses_Order", Storage="_Statuse", ThisKey="StatusID", OtherKey="StatusID", IsForeignKey=true)]
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Status_Order", Storage="_Statuse", ThisKey="StatusID", OtherKey="StatusID", IsForeignKey=true)]
 		public Status Status
 		{
 			get
@@ -2848,7 +2848,7 @@ namespace SportRentals.Models.DBObjects
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Statuses_Order", Storage="_Orders", ThisKey="StatusID", OtherKey="StatusID")]
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Status_Order", Storage="_Orders", ThisKey="StatusID", OtherKey="StatusID")]
 		public EntitySet<Order> Orders
 		{
 			get
