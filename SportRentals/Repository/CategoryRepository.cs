@@ -79,5 +79,22 @@ namespace SportRentals.Repository
             dbContext.Categories.InsertOnSubmit(MapModelToDbObject(categoryModel));
             dbContext.SubmitChanges(0);
         }
+
+        public void UpdateCategory(CategoryModel categoryModel)
+        {
+            Models.DBObjects.Category existingCategory = dbContext.Categories.FirstOrDefault(x => x.CategoryID == categoryModel.CategoryID);
+            if (existingCategory != null)
+            {
+                existingCategory.CategoryID = categoryModel.CategoryID;
+                existingCategory.Name = categoryModel.Name;
+                existingCategory.Description = categoryModel.Description;
+             
+
+                dbContext.SubmitChanges();
+
+
+            }
+        }
+
     }
 }

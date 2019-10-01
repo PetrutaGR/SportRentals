@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.Specialized;
+using System.ComponentModel.DataAnnotations;
 using System.Data.Entity.Core;
 using System.Linq;
 using System.Web;
@@ -14,7 +15,9 @@ namespace SportRentals.ViewModels
         public string Product;
         public decimal Price;
         public int Quantity;
-        public int SubTotal;
+
+        [DisplayFormat(DataFormatString = "{0:C2}", ApplyFormatInEditMode = true)]
+        public decimal SubTotal { get; set; }
 
         public CartViewModel() { }
 

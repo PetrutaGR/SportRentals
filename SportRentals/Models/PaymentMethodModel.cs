@@ -8,7 +8,7 @@ namespace SportRentals.Models
 {
     public class PaymentMethodModel
     {
-
+        [Display(Name = "ID")]
         public int PaymentMethodID { get; set; }
 
 

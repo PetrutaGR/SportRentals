@@ -6,23 +6,24 @@
     //Layout = "~/Views/Shared/_assemblylayout.cshtml";
 }
 
-<h2>ShopProducts</h2>
+<h2>Shop Products</h2>
 
 <div>
-    <h4>ShopProductsViewModel</h4>
+    
     <hr />
-    <dl class="dl-horizontal">
+    <div class="flex-container">
         <dt>
             @Html.DisplayNameFor(model => model.Name)
+          
         </dt>
 
-        <dd>
+        <span>
             @Html.DisplayFor(model => model.Name)
-        </dd>
+        </span>
 
         
 
-    </dl>
+    </div>
 </div>
 @foreach (var item in Model.Products)
 {

@@ -56,7 +56,8 @@ namespace SportRentals.Controllers
         // GET: Category/Edit/5
         public ActionResult Edit(int id)
         {
-            return View();
+            Models.CategoryModel categoryModel = categoryRepository.GetCategoryByID(id);
+            return View("EditCategory", categoryModel);
         }
 
         // POST: Category/Edit/5
@@ -65,13 +66,16 @@ namespace SportRentals.Controllers
         {
             try
             {
-                // TODO: Add update logic here
+                Models.CategoryModel categoryModel = new Models.CategoryModel();
+                UpdateModel(categoryModel);
+                categoryRepository.UpdateCategory(categoryModel);
+
 
                 return RedirectToAction("Index");
             }
             catch
             {
-                return View();
+                return View("EditCategory");
             }
         }
 

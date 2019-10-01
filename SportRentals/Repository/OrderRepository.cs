@@ -89,10 +89,13 @@ namespace SportRentals.Repository
             return orderList;
         }
 
-        public void InsertOrder(OrderModel orderModel)
+        public int InsertOrder(OrderModel orderModel)
         {
-            dbContext.Orders.InsertOnSubmit(MapModelToDbObject(orderModel));
+            var order = MapModelToDbObject(orderModel);
+            dbContext.Orders.InsertOnSubmit(order);
             dbContext.SubmitChanges();
+
+            return order.OrderID;
         }
 
         public void UpdateOrder(OrderModel orderModel)

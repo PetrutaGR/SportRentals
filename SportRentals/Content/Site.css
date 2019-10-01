@@ -46,3 +46,107 @@ textarea {
     height: 70px;
     padding-top: 15px;
 }
+
+a.my-class {
+    color: #333333
+}
+
+    a.my-class:active {
+        color: #666666
+    }
+
+    a.my-class:link {
+        color: #999999
+    }
+
+    a.my-class:visited {
+        color: #CCCCCC
+    }
+
+linkbutton {
+    font-family: Constantia, Georgia, serif;
+    text-align: justify;
+    padding-left: 22px;
+    background-color: #FF7F00;
+    color: #fff;
+    border: 1px solid #333;
+    cursor: pointer;
+    font-size: 1.2em;
+    width: auto;
+    height: auto;
+}
+
+
+/* Flex-related code */
+.flex {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+    .flex > section {
+        margin: 6px;
+        align-items: center;
+        display: flex;
+        flex: 1 1 0;
+        flex-direction: column;
+        text-align: center;
+        max-width: 260px;
+        background: rgb(250,250,250)
+    }
+
+        .flex > section > p {
+            flex-grow: 1;
+        }
+
+
+.flex ul {
+    display: flex;
+    justify-content: space-between;
+}
+
+.flex aside {
+    width: 100%;
+}
+
+/* Basic styling for UI */
+
+body {
+    font: 16px "Titillium Web", sans-serif;
+    margin: 0;
+}
+
+img {
+    max-width: 240px;
+    max-height: 225px;
+    padding: 15px;
+    border-radius: 2px;
+    padding: 15px;
+}
+
+
+
+h1 {
+    color: #777380;
+    font-weight: 200;
+    font-size: 35px;
+}
+
+h2 {
+    font-size: 25px;
+}
+
+
+
+.flex ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.flex li {
+    font: 16px "Titillium Web", sans-serif;
+    background: #eee;
+    padding: 0.3em 0.6em;
+    border-radius: 1em;
+    margin-right: 10px;
+    margin-left: 10px;
+}

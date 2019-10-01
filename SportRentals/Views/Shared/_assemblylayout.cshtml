@@ -2,74 +2,90 @@
 
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>@ViewBag.Title - My ASP.NET Application <!--2 -->
-</title>
-<meta name="keywords" content="" />
-<meta name="description" content="" />
-<link href="http://fonts.googleapis.com/css?family=Didact+Gothic" rel="stylesheet" /><!--3 -->
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>
+        @ViewBag.Title - My ASP.NET Application <!--2 -->
+    </title>
+    <meta name="keywords" content="" />
+    <meta name="description" content="" />
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://fonts.googleapis.com/css?family=Didact+Gothic" rel="stylesheet" /><!--3 -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.css" />
+</head>
+
     @Styles.Render("~/Content/templated-assembly/default.css")
     @Scripts.Render("~/Content/templated-assembly/fonts.css")
 
 
-<!--[if IE 6]><link href="default_ie6.css" rel="stylesheet" type="text/css" /><![endif]-->
+    <!--[if IE 6]><link href="default_ie6.css" rel="stylesheet" type="text/css" /><![endif]-->
 
-</head>
+
 <body>
- <div id="header-wrapper">
-      <div style="float:right;"> @Html.Partial("_LoginPartial")</div>
+    <div id="header-wrapper">
+        <div style="float:right;"> @Html.Partial("_LoginPartial")</div>
 
 
 
-    <div id="header" class="container">
-        <div id="logo">
-           
-            <p style="font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;font-size:30px;font-style:normal;">
-               SkiRentals
-            </p>
+        <div id="header" class="container">
+            <div id="logo">
 
+                <p style="font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;font-size:30px;font-style:normal;">
+                    Sport Rentals
+                </p>
+
+            </div>
+            <div id="menu">
+
+                <ul>
+                    @{ if (User.IsInRole("User"))
+                        {
+
+                            @*<li>@Html.ActionLink("Go to Shop", "Index", "ProductUser")</li>*@
+
+
+                        }
+
+                    }
+                    @*<li>@Html.ActionLink("Go to Shop", "Index", "ProductUser")</li>
+                    <li>@Html.ActionLink("Contact", "Contact", "Home")</li>*@
+
+                    @{ if (User.IsInRole("Admin"))
+                        {
+
+                            <li><strong>@Html.ActionLink("Customers", "Index", "Customer")</strong></li>
+                            <li><strong>@Html.ActionLink("Orders", "Index", "Order")</strong></li>
+                            <li><strong>@Html.ActionLink("Shops", "Index", "Shop")</strong></li>
+
+                            <li><strong>@Html.ActionLink("Invoicing", "Index", "Invoicing")</strong></li>
+                            <li><strong>@Html.ActionLink("Products", "Index", "Product")</strong></li>
+                        }
+                    }
+                </ul>
+            </div>
         </div>
-        <div id="menu">
 
-            <ul>
-                @{ if (User.IsInRole("User"))
-                    {
-                    
-                        <li>@Html.ActionLink("Go to Shop", "Index", "ProductUser")</li>
-                        
+        <div id="banner" class="container">
+            <div class="title">
+                <h2 data-locnmethod="withip">NEVER BE <font color="white"> UN</font>EQUIPPED</h2>
+                <span class="byline">Discover now affordable rental sport equipment </span>
+            </div>
+            <ul class="actions">
 
-                    }
-
-                }
-
-                @{ if (User.IsInRole("Admin"))
-                    {
-
-                        <li><strong>@Html.ActionLink("Customers", "Index", "Customer")</strong></li>
-                        <li><strong>@Html.ActionLink("Orders", "Index", "Order")</strong></li>
-                        <li><strong>@Html.ActionLink("Shops", "Index", "Shop")</strong></li>
-
-                        <li><strong>@Html.ActionLink("Invoicing", "Index", "Invoicing")</strong></li>
-                        <li><strong>@Html.ActionLink("Products", "Index", "Product")</strong></li>
-                    }
-                }
+                <li>@Html.ActionLink("Go to Shop","Index","ProductUser","", new { @style = "color:#f8f8ff" })</li>
             </ul>
+
+
+
         </div>
+
+      
+
     </div>
-
-    <div id="banner" class="container">
-        <div class="title">
-            <h2 data-locnmethod="withip">NEVER BE <font color="white"> UN</font>EQUIPPED</h2>
-            <span class="byline">Discover now affordable rental sport equipment </span>
-        </div>
-        <ul class="actions">
-            
-        </ul>
-
-
-
-    </div>  
-</div>
 
     <div id="wrapper">
         <div id="three-column" class="container">
@@ -80,36 +96,24 @@
 
             <div class="boxA">
                 <p>Snowboards</p>
-                <img style="height: 200px; width: 100%; display: block;" src="https://image.flaticon.com/icons/svg/38/38491.svg" />
-                @Html.ActionLink("Reserve Now", "ProductDetails", "Product", null, new { @class = "btn btn-primary btn-large" })
-
+                <img style="height: 200px; width: 100%; display: block;" src="/Content/Image/38491.svg" />
+                @*<a href="#" class="button button-alt">Reserve Now</a>*@
             </div>
             <div class="boxB">
                 <p>Ski Packages</p>
-                <img style="height: 200px; width: 100%; display: block;" src="https://image.flaticon.com/icons/svg/8/8122.svg" />
-                   <a href="#" class="button button-alt">Reserve Now</a>
+                <img style="height: 200px; width: 100%; display: block;" src="/Content/Image/8122.svg" />
+                   @*<a href="#" class="button button-alt">Reserve Now</a>*@
             </div>
                
             <div class="boxC">
                 <p>Ski Clothes</p>
-                <img style="height: 200px; width: 100%; display: block;" src="https://image.flaticon.com/icons/svg/2093/2093841.svg"/>
-                <a href="#" class="button button-alt">Reserve Now</a>
+                <img style="height: 200px; width: 100%; display: block;" src="/Content/Image/2093841.svg"/>
+                @*<a href="#" class="button button-alt">Reserve Now</a>*@
             </div>
             
         </div>
     </div>
-    @*<div id="welcome">
-        <div class="container">
-            <div class="title">
-                <h2>Save time, save money, rent now!</h2>
-                <span class="byline">Pick up your bookings from our shops</span>
-            </div>
-            <p></p>
-            <ul class="actions">
-                <li>@Html.ActionLink("CHECK OUT OUR SHOPS", "ShopUI", "Shop",null, new { @class = "btn btn-info", @role = "button", @style="color: white" })</li>
-            </ul>
-        </div>
-    </div>*@
+  
 
     <div id="page">
         <div class="container">
@@ -124,7 +128,7 @@
 <div id="copyright" class="container">
         <p>&copy; @DateTime.Now.Year -My ASP.NET MVC Application</p>
 </div>
-    @Scripts.Render("1/bundles/jquery")
+    @*@Scripts.Render("1/bundles/jquery")*@
     @RenderSection("scripts", required: false)
 
 

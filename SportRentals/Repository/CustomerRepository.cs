@@ -80,6 +80,11 @@ namespace SportRentals.Repository
             return MapDbObjectToModel(dbContext.Customers.FirstOrDefault(x => x.CustomerID == ID));
         }
 
+        public CustomerModel GetCustomerByUserId(string id)
+        {
+            return MapDbObjectToModel(dbContext.Customers.FirstOrDefault(x => x.AspNetUser.Id == id));
+        }
+
         public void InsertCustomer(CustomerModel customerModel)
         {
             dbContext.Customers.InsertOnSubmit(MapModelToDbOject(customerModel));

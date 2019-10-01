@@ -65,9 +65,10 @@ namespace SportRentals.Controllers
 
                 return RedirectToAction("Index");
             }
-            catch
+            catch (Exception ex)
             {
-                return View("CreateProduct");
+                HandleErrorInfo error = new HandleErrorInfo(ex, "Product", "Create");
+                return View("Error", error);
             }
         }
 
@@ -93,9 +94,10 @@ namespace SportRentals.Controllers
 
                 return RedirectToAction("Index");
             }
-            catch
+            catch (Exception ex)
             {
-                return View("EditProduct");
+                HandleErrorInfo error = new HandleErrorInfo(ex, "Product", "Edit");
+                return View("Error", error);
             }
         }
 
@@ -118,9 +120,10 @@ namespace SportRentals.Controllers
 
                 return RedirectToAction("Index");
             }
-            catch
+            catch (Exception ex)
             {
-                return View("Delete");
+                HandleErrorInfo error = new HandleErrorInfo(ex, "Product", "Delete");
+                return View("Error", error);
             }
         }
     }

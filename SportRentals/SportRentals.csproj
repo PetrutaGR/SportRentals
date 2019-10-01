@@ -286,7 +286,6 @@
     <Content Include="Content\svg-with-js.min.css" />
     <Content Include="Content\templated-assembly\default.css" />
     <Content Include="Content\templated-assembly\fonts.css" />
-    <Content Include="Content\templated-assembly\fonts\fontawesome-webfont.svg" />
     <Content Include="Content\templated-assembly\images\header-bg.jpg" />
     <Content Include="Content\templated-assembly\index.html" />
     <Content Include="Content\templated-assembly\license.txt" />
@@ -307,10 +306,6 @@
       <LastGenOutput>SportRentals.designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
     </Content>
-    <Content Include="Content\templated-assembly\fonts\fontawesome-webfont.eot" />
-    <Content Include="Content\templated-assembly\fonts\fontawesome-webfont.ttf" />
-    <Content Include="Content\templated-assembly\fonts\fontawesome-webfont.woff" />
-    <Content Include="Content\templated-assembly\fonts\FontAwesome.otf" />
     <Content Include="Content\bootstrap-reboot.min.css.map" />
     <Content Include="Content\bootstrap-reboot.css.map" />
     <Content Include="Content\bootstrap-grid.min.css.map" />
@@ -389,6 +384,10 @@
     <Content Include="Views\Shared\MvcGrid\_Grid.cshtml" />
     <Content Include="Views\Cart\ViewCart.cshtml" />
     <Content Include="Views\Cart\Index.cshtml" />
+    <Content Include="Views\Category\EditCategory.cshtml" />
+    <Content Include="Views\ProductUser\Details.cshtml" />
+    <Content Include="Views\Cart\Checkout.cshtml" />
+    <Content Include="Views\Cart\OrderSucces.cshtml" />
     <None Include="Views\Shared\_assemblylayout.cshtml" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
@@ -493,7 +492,9 @@
   <ItemGroup>
     <TypeScriptCompile Include="Scripts\index.d.ts" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Content\templated-assembly\fonts\" />
+  </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>

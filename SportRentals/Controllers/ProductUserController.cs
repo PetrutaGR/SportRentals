@@ -6,6 +6,8 @@ using System.Web;
 using System.Web.Mvc;
 using SportRentals.Models;
 using SportRentals.ViewModels;
+using System.Web.Security;
+using Microsoft.AspNet.Identity;
 
 namespace SportRentals.Controllers
 {
@@ -14,129 +16,133 @@ namespace SportRentals.Controllers
         private ProductRepository productRepository = new Repository.ProductRepository();
         private ShopRepository shopRepository = new ShopRepository();
         private CategoryRepository categoryRepository = new CategoryRepository();
-        // GET: ProductUser
 
 
-        [Authorize(Roles = "User")]
+       
         public ActionResult Index()
         {
             var shopViewModel = new ProductCategoryShopViewModel();
 
             var shops = shopRepository.GetAllShops();
-            var orderedShops = shops.OrderBy(x => x.Name);
-            shopViewModel.ShopID = orderedShops.FirstOrDefault().ShopId;
+            shops.Add(new ShopModel() { Name = "- All -", ShopId = 0 });
 
+            var orderedShops = shops.OrderBy(x => x.Name);
             SelectList shopList = new SelectList(orderedShops, "ShopID", "Name");
             ViewData["ShopList"] = shopList;
 
-            shopViewModel.StartDate = DateTime.Today;
-            shopViewModel.EndDate = DateTime.Today;
+            var shop = orderedShops.FirstOrDefault();
 
-            shopViewModel.Products = productRepository.GetAllProducts();
+
+
+            if (Session["startDate"] != null && Session["endDate"] != null)
+            {
+                shopViewModel.StartDate = (DateTime)Session["startDate"];
+                shopViewModel.EndDate = (DateTime)Session["endDate"];
+            }
+            else
+            {
+                shopViewModel.StartDate = DateTime.Today;
+                shopViewModel.EndDate = DateTime.Today;
+            }
+
+
+            if (Session["shopId"] != null)
+            {
+                shopViewModel.ShopID = (int)Session["shopId"];
+            }
+            else
+            {
+                shopViewModel.ShopID = 0;
+            }
+
+
+            if (Session["products"] != null)
+            {
+                shopViewModel.Products = (List<ProductModel>)Session["products"];
+            }
+            else
+            {
+                shopViewModel.Products = productRepository.GetAllProducts();
+            }
 
 
             return View("IndexUser", shopViewModel);
         }
 
-        [HttpPost]
 
-        [Authorize(Roles = "User")]
+        [HttpPost]
         public ActionResult Search(FormCollection collection)
         {
             var shopViewModel = new ProductCategoryShopViewModel();
             TryUpdateModel(shopViewModel);
 
-
             var shops = shopRepository.GetAllShops();
+            shops.Add(new ShopModel() { Name = "- All -", ShopId = 0 });
+
             var orderedShops = shops.OrderBy(x => x.Name);
             SelectList shopList = new SelectList(orderedShops, "ShopID", "Name");
             ViewData["ShopList"] = shopList;
 
             var shop = shops.FirstOrDefault(x => x.ShopId == shopViewModel.ShopID);
 
-            shopViewModel.Products = productRepository.GetAllProductsByCategoryID(shop.CategoryID);
+            if (shopViewModel.ShopID == 0)
+            {
+                shopViewModel.Products = productRepository.GetAllProducts();
+            }
+            else
+            {
+                shopViewModel.Products = productRepository.GetAllProductsByCategoryID(shop.CategoryID);
+            }
 
+            Session["startDate"] = shopViewModel.StartDate;
+            Session["endDate"] = shopViewModel.EndDate;
+            Session["shopId"] = shopViewModel.ShopID;
+            Session["Products"] = shopViewModel.Products;
+            Session["shopId"] = shopViewModel.ShopID;
 
             return View("IndexUser", shopViewModel);
 
         }
 
-        //// GET: ProductUser/Details/5
-        //public ActionResult Details(int id)
-        //{
-        //    return View();
-        //}
 
-        //// GET: ProductUser/Create
-        //public ActionResult Create()
-        //{
-        //    return View();
-        //}
+        public ActionResult AddToCart(int ID)
+        {
+            Cart shoppingcart = Session["cart"] as Cart;
 
-        // POST: ProductUser/Create
-        //[HttpPost]
-        //public ActionResult Create(FormCollection collection)
-        //{
-        //    try
-        //    {
-        //        // TODO: Add insert logic here
+            if(shoppingcart == null)
+            {
+                shoppingcart = new Cart();
+            }
 
-        //        return RedirectToAction("Index");
-        //    }
-        //    catch
-        //    {
-        //        return View();
-        //    }
-        //}
+            shoppingcart.AddProduct(ID);
 
-        //// GET: ProductUser/Edit/5
-        //public ActionResult Edit(int id)
-        //{
-        //    return View();
-        //}
+            Session["cart"] = shoppingcart;
+            Session["numberofitems"] = shoppingcart.NumberofItems();
+            
+            TempData["ProductAdded"] = true;
+            //return Json(new { items = shoppingcart.NumberofItems(), message = "Your product has been added!" }, JsonRequestBehavior.AllowGet);
+            
 
-        // POST: ProductUser/Edit/5
-        //[HttpPost]
-        //public ActionResult Edit(int id, FormCollection collection)
-        //{
-        //    try
-        //    {
-        //        // TODO: Add update logic here
 
-        //        return RedirectToAction("Index");
-        //    }
-        //    catch
-        //    {
-        //        return View();
-        //    }
-        //}
 
-        //// GET: ProductUser/Delete/5
-        //public ActionResult Delete(int id)
-        //{
-        //    return View();
-        //}
+            return RedirectToAction("Index");
+        }
 
-        //// POST: ProductUser/Delete/5
-        //[HttpPost]
-        //public ActionResult Delete(int id, FormCollection collection)
-        //{
-        //    try
-        //    {
-        //        // TODO: Add delete logic here
+        // GET: ProductUser/Details/5
+        public ActionResult Details(int id)
+        {
+            Models.ProductModel productModel = productRepository.GetProductById(id);
+            return View("Details", productModel);
+        }
 
-        //        return RedirectToAction("Index");
-        //    }
-        //    catch
-        //    {
-        //        return View();
-        //    }
-        //}
-
+    
         [HttpPost]
         public ActionResult Checkout(FormCollection collection)
         {
-            throw new NotImplementedException();
+            var shopViewModel = new ProductCategoryShopViewModel();
+            TryUpdateModel(shopViewModel);
+
+            return RedirectToAction("ViewCart", "Cart");
         }
     }
 }

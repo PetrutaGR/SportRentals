@@ -5,10 +5,11 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Index</h2>
+<h2></h2>
+<h2></h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @Html.ActionLink("Add new Category", "Create",null, new {@class="btn btn-primary"})
 </p>
 <table class="table">
     <tr>
@@ -36,9 +37,8 @@
             @Html.DisplayFor(modelItem => item.Description)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.CategoryID }) |
-            @Html.ActionLink("Details", "Details", new {  id=item.CategoryID }) |
-            @Html.ActionLink("Delete", "Delete", new {  id=item.CategoryID })
+            @Html.ActionLink("Edit", "Edit", new { id=item.CategoryID },new {@class="btn btn-primary"}) 
+            @Html.ActionLink("Delete", "Delete", new {  id=item.CategoryID },new {@class="btn btn-warning"})
         </td>
     </tr>
 }

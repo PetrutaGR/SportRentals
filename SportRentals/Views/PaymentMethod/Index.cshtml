@@ -5,10 +5,10 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Index</h2>
+<h2></h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create",null, new {@class="btn btn-primary"})
+    @Html.ActionLink("Add new payment method", "Create",null, new {@class="btn btn-primary"})
 </p>
 <table class="table">
     <tr>
@@ -37,7 +37,6 @@
         </td>
         <td>
             @Html.ActionLink("Edit", "Edit", new { id=item.PaymentMethodID }, new { @class = "btn btn-primary" }) 
-            @Html.ActionLink("Details", "Details", new {  id=item.PaymentMethodID },new { @class = "btn btn-primary" }) 
             @Html.ActionLink("Delete", "Delete", new { id=item.PaymentMethodID },new { @class = "btn btn-warning" })
         </td>
     </tr>
