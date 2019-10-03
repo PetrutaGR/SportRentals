@@ -132,52 +132,52 @@ namespace SportRentals.Controllers
                 orderModel = orderViewModel.Order;
                 orderRepository.UpdateOrder(orderModel);
 
-                //if (orderViewModel.StatusName == "Ready")
-                //{
-                //    foreach (var productModel in orderViewModel.Products)
-                //    {
-                //        productModel.Stock--;
-                //        productRepository.UpdateStock(productModel.ProductID, productModel.Stock);
-                //    }
-                //}
-
-                //if (orderViewModel.StatusName == "Completed")
-                //{
-                //    foreach (var productModel in orderViewModel.Products)
-                //    {
-                //        productModel.Stock++;
-                //        productRepository.UpdateStock(productModel.ProductID, productModel.Stock);
-                //    }
-                //}
-
-                if (orderViewModel.InitialStatusID != orderViewModel.Order.StatusID)
+                if (orderViewModel.StatusName == "Ready")
                 {
-                    int stockAdjustment = 0;
-
-                    //1   New
-                    //2   Ready
-                    //3   In Progress
-                    //4   Completed
-                    //5   Cancelled
-                    switch (orderViewModel.Order.StatusID)
+                    foreach (var productModel in orderViewModel.Products)
                     {
-                        case 2:
-                            stockAdjustment = -1;
-                            break;
-                        case 4:
-                            stockAdjustment = 1;
-                            break;
-                    }
-
-                    if (stockAdjustment != 0)
-                    {
-                        foreach (var productModel in orderViewModel.Products)
-                        {
-                            productModel.Stock += stockAdjustment;
-                            productRepository.UpdateStock(productModel.ProductID, productModel.Stock);
-                        }
+                        productModel.Stock--;
+                        productRepository.UpdateStock(productModel.ProductID, productModel.Stock);
                     }
                 }
+
+                if (orderViewModel.StatusName == "Completed")
+                {
+                    foreach (var productModel in orderViewModel.Products)
+                    {
+                        productModel.Stock++;
+                        productRepository.UpdateStock(productModel.ProductID, productModel.Stock);
+                    }
+                }
+
+                //if (orderViewModel.InitialStatusID != orderViewModel.Order.StatusID)
+                //{
+                //    int stockAdjustment = 0;
+
+                //    //1   New
+                //    //2   Ready
+                //    //3   In Progress
+                //    //4   Completed
+                //    //5   Cancelled
+                //    switch (orderViewModel.Order.StatusID)
+                //    {
+                //        case 2:
+                //            stockAdjustment = -1;
+                //            break;
+                //        case 4:
+                //            stockAdjustment = 1;
+                //            break;
+                //    }
+
+                //    if (stockAdjustment != 0)
+                //    {
+                //        foreach (var productModel in orderViewModel.Products)
+                //        {
+                //            productModel.Stock += stockAdjustment;
+                //            productRepository.UpdateStock(productModel.ProductID, productModel.Stock);
+                //        }
+                //    }
+                //}
 
                 return RedirectToAction("Index");
             }

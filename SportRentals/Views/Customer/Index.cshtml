@@ -5,7 +5,11 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
     //Layout = "~/Views/Shared/_assemblylayout.cshtml";
 }
+<p>
 
+
+
+</p>
 <h2>Customers</h2>
 
 
@@ -64,7 +68,7 @@
     </td>
     <td>
         @Html.ActionLink("Edit", "Edit", new { id = item.CustomerID }, new { @class = "btn btn-primary" })
-        @Html.ActionLink("Details", "Details", new { id = item.CustomerID }, new { @class = "btn btn-primary" })
+        @*@Html.ActionLink("Details", "Details", new { id = item.CustomerID }, new { @class = "btn btn-primary" })*@
         @Html.ActionLink("Delete", "Delete", new { id = item.CustomerID }, new { @class = "btn btn-warning" })
     </td>
 </tr>
