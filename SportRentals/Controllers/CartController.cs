@@ -30,12 +30,13 @@ namespace SportRentals.Controllers
 
         public ActionResult ViewCart()
         {
-            decimal total = 0;
             List<CartViewModel> cartcontent = new List<CartViewModel>();
             Cart shoppingcart = (Cart)Session["cart"];
 
             if (shoppingcart != null)
             {
+                shoppingcart.Total = 0;
+
                 shoppingcart.StartDate = (DateTime)Session["startDate"];
                 shoppingcart.EndDate = (DateTime)Session["endDate"];
 
@@ -54,20 +55,18 @@ namespace SportRentals.Controllers
                     cartViewModel.ProductID = product.ProductID;
                     cartViewModel.Price = product.DailyPrice;
                     cartViewModel.Product = product.Name;
-                    cartViewModel.Quantity = productAdded.ItemNumber;
+                    cartViewModel.Quantity = productAdded.Count;
+                    cartViewModel.SubTotal = (product.DailyPrice * numberOfDays * productAdded.Count);
 
                     cartcontent.Add(cartViewModel);
 
-                    total = total + (product.DailyPrice * numberOfDays * productAdded.ItemNumber);
-
-                    cartViewModel.SubTotal = total;
-                    shoppingcart.Total = total;
+                    shoppingcart.Total += cartViewModel.SubTotal;
                 }
             }
 
             Session["cart"] = shoppingcart;
 
-            ViewData["total"] = total;
+            ViewData["total"] = shoppingcart.Total.ToString("0.00");
 
             return View(cartcontent);
         }
@@ -88,7 +87,7 @@ namespace SportRentals.Controllers
             foreach (var productAdded in shoppingcart.productsList)
             {
                 var product = productRepository.GetProductById(productAdded.ProductAddedID);
-                total = total + (product.DailyPrice * numberOfDays * productAdded.ItemNumber);
+                total = total + (product.DailyPrice * numberOfDays * productAdded.Count);
             }
 
             return Json(new { items = shoppingcart.NumberofItems(), productID = ID, deleted = 1, grandtotal = total });
@@ -130,7 +129,7 @@ namespace SportRentals.Controllers
                 OrderProductModel orderproduct = new OrderProductModel();
 
                 orderproduct.ProductID = productAdded.ProductAddedID;
-                orderproduct.OrderQuantity = productAdded.ItemNumber;
+                orderproduct.OrderQuantity = productAdded.Count;
                 orderproduct.OrderID = orderId;
                 orderproduct.OrderSatus = "New";
 

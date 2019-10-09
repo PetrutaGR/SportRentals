@@ -313,7 +313,7 @@ namespace SportRentals.Controllers
         // GET: /Manage/LinkLoginCallback
         public async Task<ActionResult> LinkLoginCallback()
         {
-            var loginInfo = await AuthenticationManager.GetExternalLoginInfoAsync(XsrfKey, User.Identity.GetUserId());
+            var loginInfo = await AuthenticationManager.GetExternalLoginInfoAsync(smrfKey, User.Identity.GetUserId());
             if (loginInfo == null)
             {
                 return RedirectToAction("ManageLogins", new { Message = ManageMessageId.Error });
@@ -334,8 +334,8 @@ namespace SportRentals.Controllers
         }
 
 #region Helpers
-        // Used for XSRF protection when adding external logins
-        private const string XsrfKey = "XsrfId";
+        // Used for smRF protection when adding external logins
+        private const string smrfKey = "smrfId";
 
         private IAuthenticationManager AuthenticationManager
         {

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
 
@@ -12,6 +13,7 @@ namespace SportRentals.Models
         public DateTime StartDate { get; set; }
         public DateTime EndDate { get; set; }
 
+        [DisplayFormat(DataFormatString = "{0:C2}", ApplyFormatInEditMode = true)]
         public decimal Total { get; set; }
 
         public Cart()
@@ -26,7 +28,7 @@ namespace SportRentals.Models
             {
                 if (productAdded.ProductAddedID == ProductID)
                 {
-                    productAdded.ItemNumber++;
+                    productAdded.Count++;
                     existing_product = true;
                     break;
 
@@ -35,7 +37,7 @@ namespace SportRentals.Models
 
             if (existing_product == false)
             {
-                ProductAdded productAdded = new ProductAdded() {ItemNumber = 1, ProductAddedID = ProductID};
+                ProductAdded productAdded = new ProductAdded() {Count = 1, ProductAddedID = ProductID};
 
                 productsList.Add(productAdded);
 
@@ -65,7 +67,7 @@ namespace SportRentals.Models
             {
                 if (productAdded.ProductAddedID == ProductID)
                 {
-                    productsList[k].ItemNumber = quantity;
+                    productsList[k].Count = quantity;
                 }
 
                 k++;
@@ -78,7 +80,7 @@ namespace SportRentals.Models
             int sum = 0;
             foreach(var productAdded in productsList)
             {
-                sum = sum + productAdded.ItemNumber;
+                sum = sum + productAdded.Count;
             }
 
             return sum;
@@ -91,6 +93,6 @@ namespace SportRentals.Models
     public class ProductAdded
     {
         public int ProductAddedID { get; set; }
-        public int ItemNumber { get; set; }
+        public int Count { get; set; }
     }
 }

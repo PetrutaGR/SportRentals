@@ -5,71 +5,58 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
+@*<link href="//netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">*@
+@*<script src="//netdna.bootstrapcdn.com/bootstrap/3.0.3/js/bootstrap.min.js"></script>*@
+<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+<!------ Include the above in your HEAD tag ---------->
+<br />
+<div class="container">
+    <div class="row">
+        <div class="col-sm-6">
+            <div class="panel panel-info">
+                <div class="panel-heading">
+                    <div class="panel-title">
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <h5><span class="glyphicon glyphicon-shopping-cart"></span> Shopping Cart</h5>
+                            </div>
+                           
+                        </div>
+                    </div>
+                </div>
+                <div class="panel-body">
+                    @foreach (var item in Model)
+                    {
+                        <div class="row">
+                            <div class="col-sm-4">
+                                <h6 class="product-name"><strong>@item.Product</strong></h6>
+                            </div>
+                                <div class="col-sm-5 text-right">
+                                    <h7><strong>@Html.DisplayFor(modelItem => item.SubTotal)</strong></h7>
+
+                            </div>
+                        </div>
+                        <hr>
+                    }
 
 
-<h2>Your shoping cart</h2>
+                </div>
+                <div class="panel-footer">
+                    <div class="row text-center">
+                        <div class="col-sm-9">
+                            <h5 class="text-right"><strong>Total   </strong>$@ViewData["total"]</h5>
+                        </div>
+                        <div class="col-sm-3">
+
+                            <a href="@Url.Action("ProcessOrder","Cart")"
+                               class="btn btn-success btn-block">Checkout</a>
 
 
-<table class="table">
-    <tr>
-        <th></th>
-    </tr>
- @foreach (var item in Model)
-{
-        <tr>
-            <div>
-                
-                <hr />
-                <dl class="dl-horizontal">
-                    <dt>
-                        @Html.DisplayNameFor(model => model.ProductID)
-                    </dt>
-
-                    <dd>
-                        @Html.DisplayFor(model => item.ProductID)
-                    </dd>
-
-                    <dt>
-                        @Html.DisplayNameFor(model => model.Product)
-                    </dt>
-
-                    <dd>
-                        @Html.DisplayFor(model => item.Product)
-                    </dd>
-
-                    <dt>
-                        @Html.DisplayNameFor(model => model.Price)
-                    </dt>
-
-                    <dd>
-                        @Html.DisplayFor(model => item.Price)
-                    </dd>
-
-                    <dt>
-                        @Html.DisplayNameFor(model => model.Quantity)
-                    </dt>
-
-                    <dd>
-                        @Html.DisplayFor(model => item.Quantity)
-                    </dd>
-
-                    <dt>
-                        @Html.DisplayNameFor(model => model.SubTotal)
-                    </dt>
-
-                    <dd>
-                        @Html.DisplayFor(model => item.SubTotal)
-                    </dd>
-
-                </dl>
+                        </div>
+                    </div>
+                </div>
             </div>
-
-            
-        </tr>
- }
-    
-       
- @Html.ActionLink("Checkout", "ProcessOrder", "Cart", new { @class = "btn btn-default" } )
-   
-
-</table>
+        </div>
+    </div>
+</div>
+          

@@ -455,8 +455,8 @@ namespace SportRentals.Controllers
         }
 
         #region Helpers
-        // Used for XSRF protection when adding external logins
-        private const string XsrfKey = "XsrfId";
+        // Used for smRF protection when adding external logins
+        private const string smrfKey = "smrfId";
 
         private IAuthenticationManager AuthenticationManager
         {
@@ -506,7 +506,7 @@ namespace SportRentals.Controllers
                 var properties = new AuthenticationProperties { RedirectUri = RedirectUri };
                 if (UserId != null)
                 {
-                    properties.Dictionary[XsrfKey] = UserId;
+                    properties.Dictionary[smrfKey] = UserId;
                 }
                 context.HttpContext.GetOwinContext().Authentication.Challenge(properties, LoginProvider);
             }

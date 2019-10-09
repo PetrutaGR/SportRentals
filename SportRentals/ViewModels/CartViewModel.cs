@@ -11,10 +11,14 @@ namespace SportRentals.ViewModels
     public class CartViewModel
     {
 
-        public int ProductID;
-        public string Product;
-        public decimal Price;
-        public int Quantity;
+        public int ProductID { get; set; }
+
+        public string Product {get;set;}
+
+        [DisplayFormat(DataFormatString = "{0:C2}", ApplyFormatInEditMode = true)]
+        public decimal Price { get; set; }
+        public int Quantity { get; set; }
+        public string ImageUrl { get; set; }
 
         [DisplayFormat(DataFormatString = "{0:C2}", ApplyFormatInEditMode = true)]
         public decimal SubTotal { get; set; }
